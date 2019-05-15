@@ -12,8 +12,8 @@ fi
 
 TOKEN=${1}
 
-echo ${URL}
-echo ${TOKEN}
+#echo ${URL}
+#echo ${TOKEN}
 
 curl "${URL}/sign-out" \
   --include \
