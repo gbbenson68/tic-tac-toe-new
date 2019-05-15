@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Play Tic Tac Toe!</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -12,6 +12,56 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Browser Template</h1>
+      <header>
+        This is a header.
+      </header>
+      <main>
+        <h1>Play Tic Tac Toe!</h1>
+
+        <!-- Put each form in separate sections, they can be reorganized later. -->
+        <hr>
+        <section id='sign-up'>
+          <h3>Sign Up</h3>
+          <form class='form'>
+            <input type="email" name="credentials[email]" placeholder="Enter email here"/>
+            <input type="password" name="credentials[password]" placeholder="Enter password here"/>
+            <input type="password" name="credentials[password_confirmation]" placeholder="Re-enter password here"/>
+            <input type="submit" value="Sign Up"/>
+          </form>
+        </section>
+
+        <hr>
+        <section id='sign-in'>
+          <h3>Sign In</h3>
+          <form class='form'>
+            <input type="email" name="credentials[email]" placeholder="Enter email here"/>
+            <input type="password" name="credentials[password]" placeholder="Enter password here"/>
+            <input type="submit" value="Sign In"/>
+          </form>
+        </section>
+
+        <hr>
+        <section id='change-pw'>
+          <h2>Change Password</h2>
+          <form class='form'>
+            <input type="password" name="passwords[old]" placeholder="Enter old password here"/>
+            <input type="password" name="passwords[new]" placeholder="Enter new password here"/>
+            <input type="submit" value="Change Password"/>
+          </form>
+        </section>
+
+        <hr>
+        <section id='sign-out'>
+          <h2>Sign out</h2>
+          <form class='form'>
+            <input type="submit" value="Sign Out"/>
+          </form>
+        </section>
+
+      </main>
+      <hr>
+      <footer>
+        This is a footer.
+      </footer>
     </body>
 </html>
