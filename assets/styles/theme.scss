@@ -1,0 +1,14 @@
+$background-color: $light-grey-blue;
+$font-color: $charcoal;
+$quote-color: #e5e5e5;
+
+body {
+  background-color: $background-color;
+  color: $font-color;
+}
+
+.quote {
+  background-color: $quote-color; // gray
+  font-size: 30px;
+  // font-size: $font-size * 1.5;
+}
