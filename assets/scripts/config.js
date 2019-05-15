@@ -3,8 +3,8 @@ const pkgName = 'config' // eslint-disable-line no-unused-vars
 
 let apiUrl
 const apiUrls = {
-  production: '<replace-with-heroku-url>',
-  development: 'http://localhost:4741'
+  development: 'https://tic-tac-toe-wdi.herokuapp.com/',
+  production: 'https://tic-tac-toe-wdi-production.herokuapp.com'
 }
 
 let isNotProd
