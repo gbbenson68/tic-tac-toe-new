@@ -1,4 +1,5 @@
 'use strict'
+const pkgName = 'app' // eslint-disable-line no-unused-vars
 
 // use require with a reference to bundle the file and use it in this file
 // const example = require('./example')
