@@ -1,9 +1,14 @@
 'use strict'
 const pkgName = 'config' // eslint-disable-line no-unused-vars
 
+// NOTE: This links directly to the HTML!! If that value changes, this value
+//       must be updated!!
+const successFailMessageId = 'message'
+
 let apiUrl
 const apiUrls = {
-  development: 'https://tic-tac-toe-wdi.herokuapp.com/',
+  // NOTE: Don't forget to leave off any trailing forward slashes!!
+  development: 'https://tic-tac-toe-wdi.herokuapp.com',
   production: 'https://tic-tac-toe-wdi-production.herokuapp.com'
 }
 
@@ -22,6 +27,7 @@ if (window.location.hostname === 'localhost') {
 }
 
 module.exports = {
+  successFailMessageId,
   apiUrl,
   isNotProd
 }

@@ -18,7 +18,10 @@
       <main>
         <hr>
         <h1>Play Tic Tac Toe!</h1>
-
+          <div class="message-board">
+            <h3 id="message"></h3>
+          </div>
+        <hr>
         <!-- Put each form in separate sections, they can be reorganized later. -->
         <hr>
         <section id='sign-up'>
@@ -72,6 +75,7 @@
             <div id="cell-id-7" class="cell">o</div>
             <div id="cell-id-8" class="cell">x</div>
           </div>
+          <hr>
           <form class='form'>
             <input type="number" name="game[id]" placeholder="ID"/>
             <input type="submit" value="Update"/>
@@ -79,7 +83,9 @@
         </section>
 
         <hr>
-        <h1>PUT SCOREBOARD SOMEWHERE HERE!!</h1>
+        <div class="scoreboard">
+          <h1>PUT SCOREBOARD SOMEWHERE HERE!!</h1>
+        </div>
 
         <hr>
         <section id='new-game'>
@@ -92,7 +98,7 @@
         <hr>
         <section id='index'>
           <h2>Get All Games</h2>
-          <form>
+          <form class="form">
             <input type="submit" value="Get All Games"/>
           </form>
         </section>
@@ -100,7 +106,7 @@
         <hr>
         <section id='show'>
           <h2>Get Game</h2>
-          <form>
+          <form class="form">
             <input type="number" name="game[id]" placeholder="ID"/>
             <input type="submit" value="Get Game"/>
           </form>
