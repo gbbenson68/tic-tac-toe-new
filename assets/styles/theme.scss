@@ -1,6 +1,6 @@
-$background-color: $light-grey-blue;
-$font-color: $charcoal;
-$quote-color: #e5e5e5;
+$background-color: $sky-blue;
+$font-color: $pure-black;
+$quote-color: $off-white;
 $cell-size: 10 * $font-size;
 $board-size: 3 * $cell-size;
 
@@ -21,4 +21,13 @@ body {
   border: 2px solid $pure-black;
   height: $cell-size;
   width: $cell-size;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.message-board {
+  background: $light-grey-blue;
+  height: 2.5 * $font-size;
 }

@@ -24,3 +24,15 @@ h3 {
   font-size: $cell-font-size;
   text-align: center;
 }
+
+.success {
+  color: $forest-green;
+  text-align: center;
+  text-shadow: $pure-black 2px;
+}
+
+.failure {
+  color: $firetruck-red;
+  text-align: center;
+  text-shadow: $pure-black 2px;
+}
