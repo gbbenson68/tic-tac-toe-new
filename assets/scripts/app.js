@@ -25,6 +25,12 @@ $(() => {
   // On creation of a new game
   $('#new-game').children('form').on('submit', events.onNewGame)
 
+  // Get all games
+  $('#index').children('form').on('submit', events.onIndex)
+
+  // Get one game
+  $('#show').children('form').on('submit', events.onShow)
+
   // For each cell, handle a click.
   $('.cell').on('click', events.onCellClick)
 })

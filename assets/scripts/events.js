@@ -87,6 +87,24 @@ const onSignOut = (event) => {
   }
 }
 
+const onNewGame = (event) => {
+  const whoAmI = `${pkgName}.onNewGame()`
+  event.preventDefault()
+  util.logMessage(whoAmI, 'Here I am!', event.target)
+}
+
+const onIndex = (event) => {
+  const whoAmI = `${pkgName}.onIndex()`
+  event.preventDefault()
+  util.logMessage(whoAmI, 'Here I am!', '')
+}
+
+const onShow = (event) => {
+  const whoAmI = `${pkgName}.onShow()`
+  event.preventDefault()
+  util.logMessage(whoAmI, 'Here I am!', '')
+}
+
 /*
 ** onCellClick()
 **    parameter: event
@@ -107,5 +125,8 @@ module.exports = {
   onSignIn,
   onChangePassword,
   onSignOut,
+  onNewGame,
+  onIndex,
+  onShow,
   onCellClick
 }
