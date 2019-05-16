@@ -11,8 +11,7 @@ const util = require('./util')
 **    returns: response from AJAX request
 */
 const signUp = (formData) => {
-  const whoAmI = `${pkgName}.signUp()`
-  util.logMessage(whoAmI, formData, '')
+  util.logMessage(`${pkgName}.signUp()`, formData, '')
 
   return $.ajax({
     url: config.apiUrl + '/sign-up',
@@ -27,8 +26,7 @@ const signUp = (formData) => {
 **    returns: response from AJAX request
 */
 const signIn = (formData) => {
-  const whoAmI = `${pkgName}.signIn()`
-  util.logMessage(whoAmI, formData, '')
+  util.logMessage(`${pkgName}.signIn()`, formData, '')
 
   return $.ajax({
     url: config.apiUrl + '/sign-in',
@@ -37,9 +35,31 @@ const signIn = (formData) => {
   })
 }
 
+/*
+** changePassword()
+**    parameter: formData
+**    returns:  response from AJAX request
+*/
+const changePassword = (formData) => {
+  util.logMessage(`${pkgName}.changePassword()`, formData, '')
+
+  return $.ajax({
+    url: config.apiUrl + '/change-password',
+    method: 'PATCH',
+    data: formData,
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+/*
+** signOut()
+**    parameter: none
+**    returns: response from AJAX request
+*/
 const signOut = () => {
-  const whoAmI = `${pkgName}.signOut()`
-  util.logMessage(whoAmI, '', '')
+  util.logMessage(`${pkgName}.signOut()`, '', '')
 
   return $.ajax({
     url: config.apiUrl + '/sign-out',
@@ -53,5 +73,6 @@ const signOut = () => {
 module.exports = {
   signUp,
   signIn,
-  signOut
+  signOut,
+  changePassword
 }

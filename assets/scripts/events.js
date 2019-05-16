@@ -2,9 +2,10 @@
 const pkgName = 'events' // eslint-disable-line no-unused-vars
 
 const api = require('./api')
-const ui = require('./api')
+const ui = require('./ui')
 const util = require('./util')
 const getFormFields = require('../../lib/get-form-fields')
+const store = require('./store')
 
 /*
 ** onSignUp()
@@ -38,8 +39,8 @@ const onSignIn = (event) => {
   util.logMessage(whoAmI, formData, '')
 
   api.signIn(formData)
-    .then(() => console.log('Success!'))
-    .catch(() => console.log('Failed!'))
+    .then(ui.onSignInSuccess)
+    .catch(ui.onSignInFailure)
 }
 
 /*
@@ -51,9 +52,17 @@ const onChangePassword = (event) => {
   const whoAmI = `${pkgName}.onChangePassword()`
   event.preventDefault()
 
-  const form = event.target
-  const formData = getFormFields(form)
-  util.logMessage(whoAmI, formData, '')
+  if (store.user === undefined) {
+    ui.displaySuccessFail(whoAmI, 'Oops! Please sign in to change password.', false, '')
+  } else {
+    const form = event.target
+    const formData = getFormFields(form)
+    util.logMessage(whoAmI, store, formData)
+
+    api.changePassword(formData)
+      .then(ui.onChangePasswordSuccess)
+      .catch(ui.onChangePasswordFailure)
+  }
 }
 
 /*
@@ -65,13 +74,17 @@ const onSignOut = (event) => {
   const whoAmI = `${pkgName}.onSignOut()`
   event.preventDefault()
 
-  const form = event.target
-  const formData = getFormFields(form)
-  util.logMessage(whoAmI, formData, '')
+  if (store.user === undefined) {
+    ui.displaySuccessFail(whoAmI, 'Oops! You must be signed in to sign out.', false, '')
+  } else {
+    const form = event.target
+    const formData = getFormFields(form)
+    util.logMessage(whoAmI, store, formData)
 
-  api.signOut(formData)
-    .then(() => console.log('Success!'))
-    .catch(() => console.log('Failed!'))
+    api.signOut(formData)
+      .then(ui.onSignOutSuccess)
+      .catch(ui.onSignOutFailure)
+  }
 }
 
 /*

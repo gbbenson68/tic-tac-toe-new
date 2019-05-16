@@ -1,9 +1,9 @@
 'use strict'
-const pkgName = 'config' // eslint-disable-line no-unused-vars
 
-// NOTE: This links directly to the HTML!! If that value changes, this value
+// NOTE: These link directly to the HTML!! If that value changes, this value
 //       must be updated!!
-const successFailMessageId = 'message'
+const successFailMessageId = '#message'
+const formId = '.form'
 
 let apiUrl
 const apiUrls = {
@@ -28,6 +28,7 @@ if (window.location.hostname === 'localhost') {
 
 module.exports = {
   successFailMessageId,
+  formId,
   apiUrl,
   isNotProd
 }

@@ -26,13 +26,13 @@ h3 {
 }
 
 .success {
-  color: $forest-green;
+  color: $medium-green;
   text-align: center;
-  text-shadow: $pure-black 2px;
+  text-shadow: $pure-black 1px 1px;
 }
 
 .failure {
   color: $firetruck-red;
   text-align: center;
-  text-shadow: $pure-black 2px;
+  text-shadow: $pure-black 1px 1px;
 }

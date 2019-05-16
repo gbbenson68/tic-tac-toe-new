@@ -3,6 +3,7 @@ const pkgName = 'ui' // eslint-disable-line no-unused-vars
 
 const config = require('./config')
 const util = require('./util')
+const store = require('./store')
 
 /*
 ** displaySuccessFail() - calls logMessage and updates the HTML (based on id)
@@ -23,49 +24,55 @@ const displaySuccessFail = (method, message, isSuccessful, object) => {
   $(config.successFailMessageId).removeClass()
   $(config.successFailMessageId).text(message)
   $(config.successFailMessageId).addClass(displayClass)
+  $(config.formId).trigger('reset')
   setTimeout(() => $(config.successFailMessageId).text(''), 5000)
 }
 
-// Sign UP functions
-/*
-const onSignUpSuccess = (responseData) => {
-  const whoAmI = `${pkgName}.onSignUpSuccess()`
-  const message = 'Sign-up successful!'
-
-  console.log(message)
-  //util.logMessage(whoAmI, message, responseData)
-  //displaySuccessFail(whoAmI, message, true)
-}
-
-const onSignUpFailure = (responseData) => {
-  const whoAmI = `${pkgName}.onSignUpFailure()`
-  const message = 'Sign-up failed. Please try again with a different email.'
-
-  console.log(message)
-  //util.logMessage(whoAmI, message, responseData)
-  //displaySuccessFail(whoAmI, message, false)
-}
-*/
+// Sign Up functions
 const onSignUpSuccess = responseData => {
-  console.log('IN: ui.onSignUpSuccess()...')
-  console.log('Signed up successfully', responseData)
-  $('#message').text('Signed up successfully!')
-  $('#message').removeClass()
-  $('#message').addClass('success')
-  setTimeout(() => $('#message').text(''), 5000)
+  displaySuccessFail(`${pkgName}.onSignUpSuccess()`, 'Signed up successfully! Please sign in to play.', true, responseData)
 }
 
 const onSignUpFailure = responseData => {
-  console.log('IN: ui.onSignUpFailure()...')
-  console.log('Sign up failed', responseData)
-  $('#message').text('Sign up failed.')
-  $('#message').removeClass()
-  $('#message').addClass('failure')
-  setTimeout(() => $('#message').text(''), 5000)
+  displaySuccessFail(`${pkgName}.onSignUpFailure()`, 'Signed up failed.', false, responseData)
+}
+
+// Sign In functions
+const onSignInSuccess = responseData => {
+  displaySuccessFail(`${pkgName}.onSignInSuccess()`, 'Signed in successfully!', true, responseData)
+  store.user = responseData.user
+}
+
+const onSignInFailure = responseData => {
+  displaySuccessFail(`${pkgName}.onSignInFailure()`, 'Signed in failed.', false, responseData)
+}
+
+// Change PW functions
+const onChangePasswordSuccess = responseData => {
+  displaySuccessFail(`${pkgName}.onChangePasswordSuccess()`, 'Password changed successfully!', true, responseData)
+}
+
+const onChangePasswordFailure = responseData => {
+  displaySuccessFail(`${pkgName}.onChangePasswordFailure()`, 'Change password failed.', false, responseData)
+}
+
+// Sign out functions
+const onSignOutSuccess = responseData => {
+  displaySuccessFail(`${pkgName}.onSignOutSuccess()`, 'Goodbye!', true, responseData)
+}
+
+const onSignOutFailure = responseData => {
+  displaySuccessFail(`${pkgName}.onSignOutFailure()`, 'Sign out failed.', false, responseData)
 }
 
 module.exports = {
   displaySuccessFail,
   onSignUpSuccess,
-  onSignUpFailure
+  onSignUpFailure,
+  onSignInSuccess,
+  onSignInFailure,
+  onChangePasswordSuccess,
+  onChangePasswordFailure,
+  onSignOutSuccess,
+  onSignOutFailure
 }
