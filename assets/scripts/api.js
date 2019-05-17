@@ -106,7 +106,7 @@ const update = (gameId, cellId, val) => {
           index: cellId,
           value: val
         },
-        over: false
+        over: store.user.currentGame.game.over
       }
     },
     headers: {

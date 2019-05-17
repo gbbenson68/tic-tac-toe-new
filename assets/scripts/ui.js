@@ -2,8 +2,8 @@
 const pkgName = 'ui' // eslint-disable-line no-unused-vars
 
 const config = require('./config')
-const util = require('./util')
 const store = require('./store')
+const util = require('./util')
 
 /*
 ** displaySuccessFail() - calls logMessage and updates the HTML (based on id)
@@ -41,6 +41,7 @@ const onSignUpFailure = responseData => {
 const onSignInSuccess = responseData => {
   displaySuccessFail(`${pkgName}.onSignInSuccess()`, 'Signed in successfully!', true, responseData)
   store.user = responseData.user
+  store.user.cellValues = ['X', 'O'] // TODO: Replace this array with images that can be used
 }
 
 const onSignInFailure = responseData => {
@@ -58,6 +59,13 @@ const onChangePasswordFailure = responseData => {
 
 // Sign out functions
 const onSignOutSuccess = responseData => {
+  // TODO - Having this code here is ugly, as we're just doing the same thing as in game.initializeBoard().
+  //        The common code should be moved to a common file.
+  $('.cell').toArray().forEach((element) => {
+    util.logMessage(`${pkgName}.onSignOutSuccess()`, 'Emptying contents of', $(element).attr('id'))
+    $(element).text('')
+  })
+
   displaySuccessFail(`${pkgName}.onSignOutSuccess()`, 'Goodbye!', true, responseData)
 }
 
@@ -69,7 +77,6 @@ const onSignOutFailure = responseData => {
 const onNewGameSuccess = responseData => {
   displaySuccessFail(`${pkgName}.onNewGameSuccess()`, 'Let\'s play!', true, responseData)
   store.user.currentGame = responseData
-  store.user.currentGameState = 0
   store.user.currentGameTurns = 0
   store.user.currentGameUser = 0
 }
@@ -78,14 +85,22 @@ const onNewGameFailure = responseData => {
   displaySuccessFail(`${pkgName}.onNewGameFailure()`, 'Oops! Please try again.', false, responseData)
 }
 
-// UPdate cell functions
+// Update cell functions
+const isGameWon = () => {
+  store.user.currentGame.game.over = true
+
+  return store.user.currentGame.game.over
+}
+
 const onUpdateCellSuccess = responseData => {
   displaySuccessFail(`${pkgName}.onUpdateCellSuccess()`, '', true, responseData)
-  const valArr = ['X', 'O']
   const currCell = store.user.currentGameActiveCell
   store.user.currentGame = responseData
   store.user.currentGameTurns += 1
-  $('#' + currCell).text(valArr[store.user.currentGameUser])
+
+  // NOTE: Update the cell div BEFORE we update the current game user!!
+  const textVal = store.user.cellValues[store.user.currentGameUser]
+  $('#' + currCell).text(textVal)
   store.user.currentGameUser = store.user.currentGameTurns % 2
 }
 
