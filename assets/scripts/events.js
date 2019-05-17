@@ -2,10 +2,11 @@
 const pkgName = 'events' // eslint-disable-line no-unused-vars
 
 const api = require('./api')
-const ui = require('./ui')
-const util = require('./util')
+const game = require('./game')
 const getFormFields = require('../../lib/get-form-fields')
 const store = require('./store')
+const ui = require('./ui')
+const util = require('./util')
 
 /*
 ** onSignUp()
@@ -87,18 +88,32 @@ const onSignOut = (event) => {
   }
 }
 
+/*
+** onNewGame()
+*/
 const onNewGame = (event) => {
   const whoAmI = `${pkgName}.onNewGame()`
   event.preventDefault()
-  util.logMessage(whoAmI, 'Here I am!', event.target)
+
+  if (store.user === undefined) {
+    ui.displaySuccessFail(whoAmI, 'Oops! You must be signed in to play.', false, '')
+  } else {
+    game.newBoard(event)
+  }
 }
 
+/*
+** onIndex()
+*/
 const onIndex = (event) => {
   const whoAmI = `${pkgName}.onIndex()`
   event.preventDefault()
   util.logMessage(whoAmI, 'Here I am!', '')
 }
 
+/*
+** onShow()
+*/
 const onShow = (event) => {
   const whoAmI = `${pkgName}.onShow()`
   event.preventDefault()

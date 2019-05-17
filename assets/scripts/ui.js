@@ -65,6 +65,18 @@ const onSignOutFailure = responseData => {
   displaySuccessFail(`${pkgName}.onSignOutFailure()`, 'Sign out failed.', false, responseData)
 }
 
+// New game functions
+const onNewGameSuccess = responseData => {
+  displaySuccessFail(`${pkgName}.onNewGameSuccess()`, 'Let\'s play!', true, responseData)
+  store.user.currentGame = responseData
+  store.user.currentGameState = 0
+  store.user.currentGameTurns = 0
+}
+
+const onNewGameFailure = responseData => {
+  displaySuccessFail(`${pkgName}.onNewGameFailure()`, 'Oops! Please try again.', false, responseData)
+}
+
 module.exports = {
   displaySuccessFail,
   onSignUpSuccess,
@@ -74,5 +86,7 @@ module.exports = {
   onChangePasswordSuccess,
   onChangePasswordFailure,
   onSignOutSuccess,
-  onSignOutFailure
+  onSignOutFailure,
+  onNewGameSuccess,
+  onNewGameFailure
 }

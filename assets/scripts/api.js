@@ -70,9 +70,23 @@ const signOut = () => {
   })
 }
 
+const createBoard = (event) => {
+  util.logMessage(`${pkgName}.createBoard()`, event, '')
+
+  return $.ajax({
+    url: config.apiUrl + '/games',
+    method: 'POST',
+    data: {},
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   signOut,
-  changePassword
+  changePassword,
+  createBoard
 }
