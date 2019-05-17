@@ -126,13 +126,10 @@ const onShow = (event) => {
 **    returns: nothing
 */
 const onCellClick = (event) => {
-  const whoAmI = `${pkgName}.onCellClick()`
+  util.logMessage(`${pkgName}.onCellClick()`, 'ID = ' + event.target.id, '')
   event.preventDefault()
-
-  const cell = event.target
-  const cellId = util.getIntId(cell.id)
-
-  util.logMessage(whoAmI, 'ID = ' + cellId, '')
+  store.user.currentGameActiveCell = event.target.id
+  const cellId = util.getIntId(event.target.id)
   game.updateCell(cellId)
 }
 

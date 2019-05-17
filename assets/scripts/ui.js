@@ -71,6 +71,7 @@ const onNewGameSuccess = responseData => {
   store.user.currentGame = responseData
   store.user.currentGameState = 0
   store.user.currentGameTurns = 0
+  store.user.currentGameUser = 0
 }
 
 const onNewGameFailure = responseData => {
@@ -80,8 +81,12 @@ const onNewGameFailure = responseData => {
 // UPdate cell functions
 const onUpdateCellSuccess = responseData => {
   displaySuccessFail(`${pkgName}.onUpdateCellSuccess()`, '', true, responseData)
+  const valArr = ['X', 'O']
+  const currCell = store.user.currentGameActiveCell
   store.user.currentGame = responseData
   store.user.currentGameTurns += 1
+  $('#' + currCell).text(valArr[store.user.currentGameUser])
+  store.user.currentGameUser = store.user.currentGameTurns % 2
 }
 
 const onUpdateCellFailure = responseData => {
