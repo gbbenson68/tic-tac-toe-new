@@ -70,8 +70,13 @@ const signOut = () => {
   })
 }
 
-const createBoard = (event) => {
-  util.logMessage(`${pkgName}.createBoard()`, event, '')
+/*
+** create()
+**    parameter: event
+**    returns: response from AJAX request
+*/
+const create = (event) => {
+  util.logMessage(`${pkgName}.create()`, event, '')
 
   return $.ajax({
     url: config.apiUrl + '/games',
@@ -83,10 +88,38 @@ const createBoard = (event) => {
   })
 }
 
+/*
+** update()
+**    parameter: cell id
+**    returns: response from AJAX request
+*/
+const update = (gameId, cellId, val) => {
+  util.logMessage(`${pkgName}.update()`, `Game ID = ${gameId}, Cell ID = ${cellId}, value = ${val}`, '')
+  util.logMessage(`${pkgName}.update()`, 'Token = ' + store.user.token)
+
+  return $.ajax({
+    url: config.apiUrl + '/games' + `/${gameId}`,
+    method: 'PATCH',
+    data: {
+      game: {
+        cell: {
+          index: cellId,
+          value: val
+        },
+        over: false
+      }
+    },
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   signOut,
   changePassword,
-  createBoard
+  create,
+  update
 }

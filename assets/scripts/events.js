@@ -130,9 +130,10 @@ const onCellClick = (event) => {
   event.preventDefault()
 
   const cell = event.target
-  const id = util.getIntId(cell.id)
+  const cellId = util.getIntId(cell.id)
 
-  util.logMessage(whoAmI, 'ID = ' + id, '')
+  util.logMessage(whoAmI, 'ID = ' + cellId, '')
+  game.updateCell(cellId)
 }
 
 module.exports = {

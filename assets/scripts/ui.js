@@ -77,6 +77,17 @@ const onNewGameFailure = responseData => {
   displaySuccessFail(`${pkgName}.onNewGameFailure()`, 'Oops! Please try again.', false, responseData)
 }
 
+// UPdate cell functions
+const onUpdateCellSuccess = responseData => {
+  displaySuccessFail(`${pkgName}.onUpdateCellSuccess()`, '', true, responseData)
+  store.user.currentGame = responseData
+  store.user.currentGameTurns += 1
+}
+
+const onUpdateCellFailure = responseData => {
+  displaySuccessFail(`${pkgName}.onUpdateCellFailure()`, 'Weird... Cell couldn\'t be updated. Try again.', false, '')
+}
+
 module.exports = {
   displaySuccessFail,
   onSignUpSuccess,
@@ -88,5 +99,7 @@ module.exports = {
   onSignOutSuccess,
   onSignOutFailure,
   onNewGameSuccess,
-  onNewGameFailure
+  onNewGameFailure,
+  onUpdateCellSuccess,
+  onUpdateCellFailure
 }
