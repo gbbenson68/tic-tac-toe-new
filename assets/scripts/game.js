@@ -72,6 +72,9 @@ const canCellBeClicked = (cellId) => {
   return true
 }
 
+/*
+** ifGameWon() - check to see if the game has been won with most recent click
+*/
 const ifGameWon = (cellId) => {
   const whoAmI = `${pkgName}.isGameWon()`
   const gameCells = store.user.currentGame.game.cells
@@ -150,36 +153,14 @@ const ifGameWon = (cellId) => {
 
   // If any one of the array contains all of the current cell value,
   // the user has won the game
-  console.log('rowArr: ' + rowArr.every(element => element === cellVal))
-  if (rowArr.every(element => element === cellVal)) {
-    console.log('****** HERE 1 ******')
-    rowArr.forEach((elem, idx) => console.log(`Elem = ${elem}, Idx = ${idx}`))
-    console.log(`Cell val = ${cellVal}, Row arr = ${rowArr}`)
-  //  return true
+  const checkVal = (element) => {
+    return cellVal === element
   }
-  console.log('colArr: ' + colArr.every(element => element === cellVal))
-  if (colArr.every(element => element === cellVal)) {
-    console.log('****** HERE 2 ******')
-    colArr.forEach((elem, idx) => console.log(`Elem = ${elem}, Idx = ${idx}`))
-    console.log(`Cell val = ${cellVal}, Col arr = ${colArr}`)
-  //  return true
-  }
-  console.log('diagArr1: ' + diagArr1.every(element => element === cellVal))
-  // if (useDiag1 && diagArr1.every(element => element === cellVal)) {
-  if (diagArr1.every(element => element === cellVal)) {
-    console.log('****** HERE 3 ******')
-    diagArr1.forEach((elem, idx) => console.log(`Elem = ${elem}, Idx = ${idx}`))
-    console.log(`Cell val = ${cellVal}, Diag1 arr = ${diagArr1}`)
-  //  return true
-  }
-  console.log('diagArr2: ' + diagArr2.every(element => element === cellVal))
-  // if (useDiag2 && diagArr2.every(element => element === cellVal)) {
-  if (diagArr2.every(element => element === cellVal)) {
-    console.log('****** HERE 4 ******')
-    diagArr2.forEach((elem, idx) => console.log(`Elem = ${elem}, Idx = ${idx}`))
-    console.log(`Cell val = ${cellVal}, Diag2 arr = ${diagArr2}`)
-  //  return true
-  }
+
+  if (rowArr.every(checkVal)) { return true }
+  if (colArr.every(checkVal)) { return true }
+  if (useDiag1 && diagArr1.every(checkVal)) { return true }
+  if (useDiag2 && diagArr2.every(checkVal)) { return true }
 
   // If we've done eveything right, we should never get here.
   // If we haven't return false
