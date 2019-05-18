@@ -93,7 +93,7 @@ const create = (event) => {
 **    parameter: cell id
 **    returns: response from AJAX request
 */
-const update = (gameId, cellId, val) => {
+const update = (gameId, cellId, val, isOver) => {
   util.logMessage(`${pkgName}.update()`, `Game ID = ${gameId}, Cell ID = ${cellId}, value = ${val}`, '')
   util.logMessage(`${pkgName}.update()`, 'Token = ' + store.user.token)
 
@@ -106,7 +106,7 @@ const update = (gameId, cellId, val) => {
           index: cellId,
           value: val
         },
-        over: store.user.currentGame.game.over
+        over: isOver
       }
     },
     headers: {

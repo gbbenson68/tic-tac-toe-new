@@ -37,12 +37,15 @@ const initializeBoard = () => {
 ** updateCell() - updates the cell of a board
 */
 const updateCell = (cellId) => {
-  util.logMessage(`${pkgName}.updateCell()`, 'ID = ' + cellId, '')
+  const whoAmI = `${pkgName}.updateCell()`
+  util.logMessage(whoAmI, 'ID = ' + cellId, '')
   const gameId = store.user.currentGame.game.id
 
   if (canCellBeClicked(cellId)) {
     const val = store.user.cellValues[store.user.currentGameTurns % 2]
-    api.update(gameId, cellId, val)
+    const isOver = ifGameWon(cellId)
+    util.logMessage(whoAmI, 'IS GAME OVER = ' + isOver, '', '')
+    api.update(gameId, cellId, val, isOver)
       .then(ui.onUpdateCellSuccess)
       .catch(ui.onUpdateCellFailure)
   }
@@ -53,10 +56,6 @@ const updateCell = (cellId) => {
 */
 const canCellBeClicked = (cellId) => {
   util.logMessage(`${pkgName}.canCellBeClicked()`, 'ID = ' + cellId, '')
-
-  // ******** THIS IS TEMPORARY TO CHECK CODE FUNCTIONALITY
-  isGameWon(cellId) ? console.log('YOU\'VE WON!') : console.log('Continue...')
-  // ********
 
   // Spit error message if user tries to click an occupied cell.
   if (store.user.currentGame.game.cells[cellId] !== '') {
@@ -73,7 +72,7 @@ const canCellBeClicked = (cellId) => {
   return true
 }
 
-const isGameWon = (cellId) => {
+const ifGameWon = (cellId) => {
   const whoAmI = `${pkgName}.isGameWon()`
   const gameCells = store.user.currentGame.game.cells
   const cellVal = store.user.cellValues[store.user.currentGameUser]
@@ -143,17 +142,44 @@ const isGameWon = (cellId) => {
     }
   })
 
-  util.logMessage(whoAmI, 'Row arr = ' + rowArr, '', '')
-  util.logMessage(whoAmI, 'Col arr = ' + colArr, '', '')
-  util.logMessage(whoAmI, 'Diag1 = ' + diagArr1, '', '')
-  util.logMessage(whoAmI, 'Diag2 = ' + diagArr2, '', '')
+  // Comment these out - a little too much info
+  // util.logMessage(whoAmI, 'Row arr = ' + rowArr, '', '')
+  // util.logMessage(whoAmI, 'Col arr = ' + colArr, '', '')
+  // util.logMessage(whoAmI, 'Diag1 = ' + diagArr1, '', '')
+  // util.logMessage(whoAmI, 'Diag2 = ' + diagArr2, '', '')
 
   // If any one of the array contains all of the current cell value,
   // the user has won the game
-  if (rowArr.every(elem => elem === cellVal)) { return true }
-  if (colArr.every(elem => elem === cellVal)) { return true }
-  if (diagArr1.every(elem => elem === cellVal)) { return true }
-  if (diagArr2.every(elem => elem === cellVal)) { return true }
+  console.log('rowArr: ' + rowArr.every(element => element === cellVal))
+  if (rowArr.every(element => element === cellVal)) {
+    console.log('****** HERE 1 ******')
+    rowArr.forEach((elem, idx) => console.log(`Elem = ${elem}, Idx = ${idx}`))
+    console.log(`Cell val = ${cellVal}, Row arr = ${rowArr}`)
+  //  return true
+  }
+  console.log('colArr: ' + colArr.every(element => element === cellVal))
+  if (colArr.every(element => element === cellVal)) {
+    console.log('****** HERE 2 ******')
+    colArr.forEach((elem, idx) => console.log(`Elem = ${elem}, Idx = ${idx}`))
+    console.log(`Cell val = ${cellVal}, Col arr = ${colArr}`)
+  //  return true
+  }
+  console.log('diagArr1: ' + diagArr1.every(element => element === cellVal))
+  // if (useDiag1 && diagArr1.every(element => element === cellVal)) {
+  if (diagArr1.every(element => element === cellVal)) {
+    console.log('****** HERE 3 ******')
+    diagArr1.forEach((elem, idx) => console.log(`Elem = ${elem}, Idx = ${idx}`))
+    console.log(`Cell val = ${cellVal}, Diag1 arr = ${diagArr1}`)
+  //  return true
+  }
+  console.log('diagArr2: ' + diagArr2.every(element => element === cellVal))
+  // if (useDiag2 && diagArr2.every(element => element === cellVal)) {
+  if (diagArr2.every(element => element === cellVal)) {
+    console.log('****** HERE 4 ******')
+    diagArr2.forEach((elem, idx) => console.log(`Elem = ${elem}, Idx = ${idx}`))
+    console.log(`Cell val = ${cellVal}, Diag2 arr = ${diagArr2}`)
+  //  return true
+  }
 
   // If we've done eveything right, we should never get here.
   // If we haven't return false

@@ -85,6 +85,7 @@ const onNewGameFailure = responseData => {
   displaySuccessFail(`${pkgName}.onNewGameFailure()`, 'Oops! Please try again.', false, responseData)
 }
 
+// Update cell functions
 const onUpdateCellSuccess = responseData => {
   displaySuccessFail(`${pkgName}.onUpdateCellSuccess()`, '', true, responseData)
   const currCell = store.user.currentGameActiveCell
@@ -95,10 +96,16 @@ const onUpdateCellSuccess = responseData => {
   const textVal = store.user.cellValues[store.user.currentGameUser]
   $('#' + currCell).text(textVal)
   store.user.currentGameUser = store.user.currentGameTurns % 2
+
+  if (store.user.currentGame.game.over) { onGameWin() }
 }
 
 const onUpdateCellFailure = responseData => {
   displaySuccessFail(`${pkgName}.onUpdateCellFailure()`, 'Weird... Cell couldn\'t be updated. Try again.', false, '')
+}
+
+const onGameWin = () => {
+  console.log('YOU HAVE WON THE GAME!!!')
 }
 
 module.exports = {
@@ -114,5 +121,6 @@ module.exports = {
   onNewGameSuccess,
   onNewGameFailure,
   onUpdateCellSuccess,
-  onUpdateCellFailure
+  onUpdateCellFailure,
+  onGameWin
 }
