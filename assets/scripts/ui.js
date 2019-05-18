@@ -85,13 +85,6 @@ const onNewGameFailure = responseData => {
   displaySuccessFail(`${pkgName}.onNewGameFailure()`, 'Oops! Please try again.', false, responseData)
 }
 
-// Update cell functions
-const isGameWon = () => {
-  store.user.currentGame.game.over = true
-
-  return store.user.currentGame.game.over
-}
-
 const onUpdateCellSuccess = responseData => {
   displaySuccessFail(`${pkgName}.onUpdateCellSuccess()`, '', true, responseData)
   const currCell = store.user.currentGameActiveCell

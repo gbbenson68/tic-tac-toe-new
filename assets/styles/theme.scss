@@ -9,6 +9,11 @@ body {
   color: $font-color;
 }
 
+hr {
+  clear: both;
+  visibility: hidden;
+}
+
 .board {
   display: flex;
   flex-wrap: wrap;
