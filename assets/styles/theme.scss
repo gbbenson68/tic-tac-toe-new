@@ -4,6 +4,11 @@ $quote-color: $off-white;
 $cell-size: 10 * $font-size;
 $board-size: 3 * $cell-size;
 
+header {
+  background-color: $navy-blue;
+  color: $parakeet-yellow;
+}
+
 body {
   background-color: $background-color;
   color: $font-color;
@@ -33,6 +38,11 @@ hr {
 }
 
 .message-board {
+  background: $light-grey-blue;
+  height: 2.5 * $font-size;
+}
+
+.scoreboard {
   background: $light-grey-blue;
   height: 2.5 * $font-size;
 }

@@ -6,6 +6,12 @@ $horizontal-padding: 10px;
 $heading-line-height: 1.2;
 $cell-font-size: 7 * $font-size;
 
+header {
+  font-size: 3 * $font-size;
+  font-style: italic;
+  font-weight: 600;
+}
+
 body {
   font-size: $font-size;
   line-height: $line-height;

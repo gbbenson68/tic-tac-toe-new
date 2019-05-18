@@ -43,7 +43,7 @@ const updateCell = (cellId) => {
 
   if (canCellBeClicked(cellId)) {
     const val = store.user.cellValues[store.user.currentGameTurns % 2]
-    const isOver = ifGameWon(cellId)
+    const isOver = ifGameWon(cellId) // || isGameDraw(cellId)
     util.logMessage(whoAmI, 'IS GAME OVER = ' + isOver, '', '')
     api.update(gameId, cellId, val, isOver)
       .then(ui.onUpdateCellSuccess)
