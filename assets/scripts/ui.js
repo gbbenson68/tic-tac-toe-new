@@ -120,8 +120,7 @@ const onIndexSuccess = responseData => {
     } else {
       addClass = ' class=\'game\''
     }
-    const resultHTML = `<div${addClass}>Game ${id}<div>`
-    console.log(resultHTML)
+    const resultHTML = `<button${addClass}>Game ${id}</button>`
     $('.results').append(resultHTML)
   }
 }
