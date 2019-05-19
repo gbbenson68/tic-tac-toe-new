@@ -58,6 +58,10 @@ li {
   padding: .2 * $font-size;
 }
 
+.hidden {
+  display: none;
+}
+
 .message-board {
   background: $light-grey-blue;
   height: 3.8 * $font-size;

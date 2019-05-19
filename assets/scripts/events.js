@@ -16,6 +16,7 @@ const util = require('./util')
 const onSignUp = (event) => {
   const whoAmI = `${pkgName}.onSignUp()`
   event.preventDefault()
+  util.logMessage(whoAmI, '', '')
 
   const form = event.target
   const formData = getFormFields(form)
@@ -149,13 +150,9 @@ const onShow = (event) => {
     const formData = getFormFields(form)
     util.logMessage(whoAmI, formData, '')
 
-    if (formData.game.id === '') {
-      ui.displaySuccessFail(whoAmI, 'Oops! You need to specify an ID to retrieve a game!', false, '')
-    } else {
-      api.show(formData.game.id)
-        .then(ui.onShowSuccess)
-        .catch(ui.onShowFailure)
-    }
+    api.show(formData.game.id)
+      .then(ui.onShowSuccess)
+      .catch(ui.onShowFailure)
   }
 }
 
