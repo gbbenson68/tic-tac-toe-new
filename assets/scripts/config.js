@@ -3,7 +3,9 @@
 // NOTE: These link directly to the HTML!! If that value changes, this value
 //       must be updated!!
 const successFailMessageId = '#message'
+const scoreboardId = '#score'
 const formId = '.form'
+const messageDelay = 8000
 
 let apiUrl
 const apiUrls = {
@@ -28,6 +30,8 @@ if (window.location.hostname === 'localhost') {
 
 module.exports = {
   successFailMessageId,
+  scoreboardId,
+  messageDelay,
   formId,
   apiUrl,
   isNotProd
