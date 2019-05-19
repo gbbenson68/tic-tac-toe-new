@@ -103,12 +103,35 @@ const onNewGame = (event) => {
 }
 
 /*
+** onIndexAll() - this just wraps onIndex() but passes no argument
+*/
+const onIndexAll = () => {
+  event.preventDefault()
+  onIndex()
+}
+
+/*
+** onIndexOpen() - this just wraps onIndex() but passes an argument
+*/
+const onIndexOpen = () => {
+  event.preventDefault()
+  onIndex(false)
+}
+
+/*
 ** onIndex()
 */
-const onIndex = (event) => {
+const onIndex = (queryVal) => {
   const whoAmI = `${pkgName}.onIndex()`
-  event.preventDefault()
-  util.logMessage(whoAmI, 'Here I am!', '')
+  util.logMessage(whoAmI, '', '')
+
+  if (store.user === undefined) {
+    ui.displaySuccessFail(whoAmI, 'Oops! You must be signed in to get a list of your games.', false, '')
+  } else {
+    api.index(queryVal)
+      .then(ui.onIndexSuccess)
+      .catch(ui.onIndexFailure)
+  }
 }
 
 /*
@@ -117,7 +140,18 @@ const onIndex = (event) => {
 const onShow = (event) => {
   const whoAmI = `${pkgName}.onShow()`
   event.preventDefault()
-  util.logMessage(whoAmI, 'Here I am!', '')
+  util.logMessage(whoAmI, '', '')
+
+  if (store.user === undefined) {
+    ui.displaySuccessFail(whoAmI, 'Oops! You must be signed in to retrieve a game.', false, '')
+  } else {
+    const form = event.target
+    const formData = getFormFields(form)
+    util.logMessage(whoAmI, formData, '')
+    api.show(formData.game.id)
+      .then(ui.onShowSuccess)
+      .catch(ui.onShowFailure)
+  }
 }
 
 /*
@@ -133,13 +167,20 @@ const onCellClick = (event) => {
   game.updateCell(cellId)
 }
 
+const onGameButtonClick = (event) => {
+  util.logMessage(`${pkgName}.onGameButtonClick()`, event.target.innerText, '')
+  event.preventDefault()
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
   onChangePassword,
   onSignOut,
   onNewGame,
-  onIndex,
+  onIndexAll,
+  onIndexOpen,
   onShow,
-  onCellClick
+  onCellClick,
+  onGameButtonClick
 }

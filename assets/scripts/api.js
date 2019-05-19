@@ -115,11 +115,50 @@ const update = (gameId, cellId, val, isOver) => {
   })
 }
 
+/*
+** index() - gets list of games
+*/
+const index = (isOver) => {
+  let urlToUse
+  if (isOver === true) {
+    urlToUse = config.apiUrl + '/games?over=true'
+  } else if (isOver === false) {
+    urlToUse = config.apiUrl + '/games?over=false'
+  } else {
+    urlToUse = config.apiUrl + '/games'
+  }
+  util.logMessage(`${pkgName}.index()`, `URL: ${urlToUse}`, '')
+
+  return $.ajax({
+    url: urlToUse,
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+/*
+** show() - retrieves information for game
+*/
+const show = (id) => {
+  util.logMessage(`${pkgName}.show()`, `ID = ${id}`, '')
+  return $.ajax({
+    url: config.apiUrl + `/examples/${id}`,
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   signOut,
   changePassword,
   create,
-  update
+  update,
+  index,
+  show
 }

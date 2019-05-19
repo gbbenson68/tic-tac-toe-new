@@ -25,7 +25,7 @@ const displaySuccessFail = (method, message, isSuccessful, object) => {
   $(config.successFailMessageId).text(message)
   $(config.successFailMessageId).addClass(displayClass)
   $(config.formId).trigger('reset')
-  setTimeout(() => $(config.successFailMessageId).text(''), 5000)
+  setTimeout(() => $(config.successFailMessageId).text(''), config.messageDelay)
 }
 
 // Sign Up functions
@@ -104,6 +104,27 @@ const onUpdateCellFailure = responseData => {
   displaySuccessFail(`${pkgName}.onUpdateCellFailure()`, 'Weird... Cell couldn\'t be updated. Try again.', false, '')
 }
 
+const onIndexSuccess = responseData => {
+  displaySuccessFail(`${pkgName}.onIndexSuccess()`, 'Games retrieved - please see your results below.', true, responseData)
+
+  // Append list items to unordered list
+  responseData.games.forEach((element) => {
+    util.logMessage(`${pkgName}.onIndexSuccess()`, `Game: ${element.id}`, '')
+  })
+}
+
+const onIndexFailure = responseData => {
+  displaySuccessFail(`${pkgName}.onIndexFailure()`, 'Oops! Games could not be retrieved. Please try again.', false, '')
+}
+
+const onShowSuccess = responseData => {
+  displaySuccessFail(`${pkgName}.onShowSuccess()`, 'Games retrieved - your board has been repopulated.', true, responseData)
+}
+
+const onShowFailure = responseData => {
+  displaySuccessFail(`${pkgName}.onShowFailure()`, 'Oops! Game could not be retrieved. Please try again.', false, '')
+}
+
 const onGameWin = () => {
   console.log('YOU HAVE WON THE GAME!!!')
 }
@@ -122,5 +143,9 @@ module.exports = {
   onNewGameFailure,
   onUpdateCellSuccess,
   onUpdateCellFailure,
+  onIndexSuccess,
+  onIndexFailure,
+  onShowSuccess,
+  onShowFailure,
   onGameWin
 }
