@@ -36,7 +36,4 @@ $(() => {
 
   // For each cell, handle a click.
   $('.cell').on('click', events.onCellClick)
-
-  // For any listed game
-  $(':button').on('click', events.onGameButtonClick)
 })

@@ -144,7 +144,7 @@ const index = (isOver) => {
 const show = (id) => {
   util.logMessage(`${pkgName}.show()`, `ID = ${id}`, '')
   return $.ajax({
-    url: config.apiUrl + `/examples/${id}`,
+    url: config.apiUrl + `/games/${id}`,
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token

@@ -148,9 +148,14 @@ const onShow = (event) => {
     const form = event.target
     const formData = getFormFields(form)
     util.logMessage(whoAmI, formData, '')
-    api.show(formData.game.id)
-      .then(ui.onShowSuccess)
-      .catch(ui.onShowFailure)
+
+    if (formData.game.id === '') {
+      ui.displaySuccessFail(whoAmI, 'Oops! You need to specify an ID to retrieve a game!', false, '')
+    } else {
+      api.show(formData.game.id)
+        .then(ui.onShowSuccess)
+        .catch(ui.onShowFailure)
+    }
   }
 }
 
@@ -168,8 +173,8 @@ const onCellClick = (event) => {
 }
 
 const onGameButtonClick = (event) => {
-  util.logMessage(`${pkgName}.onGameButtonClick()`, event.target.innerText, '')
   event.preventDefault()
+  util.logMessage(`${pkgName}.onGameButtonClick()`, event.target, '')
 }
 
 module.exports = {

@@ -39,9 +39,9 @@ const initializeBoard = () => {
 const updateCell = (cellId) => {
   const whoAmI = `${pkgName}.updateCell()`
   util.logMessage(whoAmI, 'ID = ' + cellId, '')
-  const gameId = store.user.currentGame.game.id
 
   if (canCellBeClicked(cellId)) {
+    const gameId = store.user.currentGame.game.id
     const val = store.user.cellValues[store.user.currentGameTurns % 2]
     const isOver = ifGameWon(cellId) // || isGameDraw(cellId)
     util.logMessage(whoAmI, 'IS GAME OVER = ' + isOver, '', '')
@@ -56,6 +56,12 @@ const updateCell = (cellId) => {
 */
 const canCellBeClicked = (cellId) => {
   util.logMessage(`${pkgName}.canCellBeClicked()`, 'ID = ' + cellId, '')
+
+  // Spit error if no game has been started
+  if (store.user.currentGame === undefined) {
+    ui.displaySuccessFail(`${pkgName}.canCellBeClicked()`, 'Please start a new game or open an old game!', false, '')
+    return false
+  }
 
   // Spit error message if user tries to click an occupied cell.
   if (store.user.currentGame.game.cells[cellId] !== '') {
