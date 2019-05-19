@@ -55,14 +55,6 @@
         </section>
 
         <hr>
-        <section id='sign-out'>
-          <h2>Sign out</h2>
-          <form class='form'>
-            <input type="submit" value="Sign Out"/>
-          </form>
-        </section>
-
-        <hr>
         <section id="update">
           <div class="board">
             <div id="cell-id-0" class="cell"></div>
@@ -83,27 +75,36 @@
         </div>
 
         <hr>
-        <section id='new-game'>
-          <h2>New Game</h2>
-          <form class='form'>
-            <input type="submit" value="New Game"/>
-          </form>
-        </section>
-
-        <hr>
-        <section id='index'>
-          <h2>Get All Games</h2>
-          <form class="form">
-            <input type="submit" value="Get All Games"/>
-          </form>
-        </section>
+        <div class='actions'>
+          <section id='new-game'>
+            <form class='form'>
+              <input type="submit" value="Start New Game"/>
+            </form>
+          </section>
+          <section id='index'>
+            <form class="form">
+              <input type="submit" value="Get All Games"/>
+            </form>
+          </section>
+          <section id='index-open'>
+            <form class="form">
+              <input type="submit" value="Get All Open Games"/>
+            </form>
+          </section>
+        </div>
 
         <hr>
         <section id='show'>
-          <h2>Get Game</h2>
-          <form class="form">
+          <form class='form centered'>
             <input type="number" name="game[id]" placeholder="ID"/>
-            <input type="submit" value="Get Game"/>
+            <input type="submit" value="Get A Game"/>
+          </form>
+        </section>
+
+        <hr>
+        <section id='sign-out'>
+          <form class='form centered'>
+            <input type="submit" value="Sign Out"/>
           </form>
         </section>
 
