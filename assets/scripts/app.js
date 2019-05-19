@@ -26,7 +26,10 @@ $(() => {
   $('#new-game').children('form').on('submit', events.onNewGame)
 
   // Get all games
-  $('#index').children('form').on('submit', events.onIndex)
+  $('#index').children('form').on('submit', events.onIndexAll)
+
+  // Get all open games
+  $('#index-open').children('form').on('submit', events.onIndexOpen)
 
   // Get one game
   $('#show').children('form').on('submit', events.onShow)
