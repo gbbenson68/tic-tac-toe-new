@@ -34,6 +34,10 @@ const displaySuccessFail = (method, message, isSuccessful, object) => {
 */
 const onSignUpSuccess = responseData => {
   displaySuccessFail(`${pkgName}.onSignUpSuccess()`, 'Signed up successfully! Please sign in to play.', true, responseData)
+
+  // Hide sign-in forms
+  $('#sign-up').addClass('hidden')
+  $('#sign-in').children('h3').text('Please sign in to play!')
 }
 
 const onSignUpFailure = responseData => {
@@ -47,6 +51,18 @@ const onSignInSuccess = responseData => {
   displaySuccessFail(`${pkgName}.onSignInSuccess()`, 'Signed in successfully!', true, responseData)
   store.user = responseData.user
   store.user.cellValues = ['X', 'O'] // TODO: Replace this array with images that can be used
+
+  // Hide sign-up/sign-in forms
+  $('#sign-up').addClass('hidden')
+  $('#sign-in').addClass('hidden')
+
+  // Expose board and other elements
+  $('#update').removeClass('hidden')
+  $('#scoreboard').removeClass('hidden')
+  $('#actions').removeClass('hidden')
+  $('#show').removeClass('hidden')
+  $('#change-pw').removeClass('hidden')
+  $('#sign-out').removeClass('hidden')
 }
 
 const onSignInFailure = responseData => {
@@ -76,6 +92,18 @@ const onSignOutSuccess = responseData => {
   })
 
   displaySuccessFail(`${pkgName}.onSignOutSuccess()`, 'Goodbye!', true, responseData)
+
+  // Hide board and other elements
+  $('#update').addClass('hidden')
+  $('#scoreboard').addClass('hidden')
+  $('#actions').addClass('hidden')
+  $('#show').addClass('hidden')
+  $('#change-pw').addClass('hidden')
+  $('#sign-out').addClass('hidden')
+
+  // Show sign-up/sign-in forms
+  $('#sign-up').removeClass('hidden')
+  $('#sign-in').removeClass('hidden')
 }
 
 const onSignOutFailure = responseData => {
