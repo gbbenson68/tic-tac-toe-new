@@ -108,9 +108,22 @@ const onIndexSuccess = responseData => {
   displaySuccessFail(`${pkgName}.onIndexSuccess()`, 'Games retrieved - please see your results below.', true, responseData)
 
   // Append list items to unordered list
-  responseData.games.forEach((element) => {
-    util.logMessage(`${pkgName}.onIndexSuccess()`, `Game: ${element.id}`, '')
-  })
+  const gamesArr = responseData.games
+  $('.results').html('')
+  let addClass = ''
+  for (let i = 0; i < gamesArr.length; i++) {
+    const id = gamesArr[i].id
+    const isOver = gamesArr[i].over
+    util.logMessage(`${pkgName}.onIndexSuccess()`, `Game: ${id}`, '')
+    if (isOver) {
+      addClass = ' class=\'game notover\''
+    } else {
+      addClass = ' class=\'game\''
+    }
+    const resultHTML = `<div${addClass}>Game ${id}<div>`
+    console.log(resultHTML)
+    $('.results').append(resultHTML)
+  }
 }
 
 const onIndexFailure = responseData => {

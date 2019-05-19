@@ -51,9 +51,24 @@ li {
   justify-content: center;
 }
 
+.game {
+  background: $navy-blue;
+  display: inline-block;
+  height: 2 * $font-size;
+  padding: .2 * $font-size;
+}
+
 .message-board {
   background: $light-grey-blue;
   height: 3.8 * $font-size;
+}
+
+.results {
+  align-items: center;
+  color: $battleship-grey;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .scoreboard {

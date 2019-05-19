@@ -38,5 +38,5 @@ $(() => {
   $('.cell').on('click', events.onCellClick)
 
   // For any listed game
-  $(':button').on('click', events.onGameButtonClick)
+  $('.game').on('click', events.onGameButtonClick)
 })
