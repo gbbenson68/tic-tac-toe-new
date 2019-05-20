@@ -16,7 +16,6 @@ header {
 
 body {
   font-size: $font-size;
-  line-height: $line-height;
   margin: $margin auto;
   max-width: $max-width;
   padding: 0 $horizontal-padding;
@@ -48,6 +47,11 @@ body {
   text-shadow: $black 1px 1px;
 }
 
-.scoreboard {
+.score {
+  color: $dark-green;
+  font-size: 2 * $font-size;
   font-style: italic;
+  font-weight: 600;
+  padding-top: .3 * $font-size;
+  text-shadow: $black 1px 1px;
 }
