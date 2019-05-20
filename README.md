@@ -143,7 +143,7 @@ At this stage, I'm unaware of any faults in the application. That doesn't mean t
 ### To-dos
 * At some point, I would like to make this a fully-interactive two-player game which can be played asynchronously. I estimate that it will take another 10-12 hours of dedicated work to achieve that.
 * The code could be cleaned up a little bit. I would like to paramaterize the HTML so that there are no hard-coded values in the underlying JavaScript.
-* The CSS used in the rendering can be greatly improved. Unfortunately, as this is a weakness of mine, I would need to gain some knonwledge and experience before providing a *shit hot* experience.
+* The CSS used in the rendering can be greatly improved. Unfortunately, as this is a weakness of mine, I would need to gain some knonwledge and experience before providing a *shit hot* experience. Ideally, I would be using more of Bootstrap for this.
 
 About Me
 --------

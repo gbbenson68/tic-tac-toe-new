@@ -1,9 +1,8 @@
 $font-size: 18px;
 $line-height: 1.6;
-$vertical-margin: 40px;
 $max-width: 650px;
 $horizontal-padding: 10px;
-$heading-line-height: 1.2;
+$vertical-padding: 5px;
 $cell-font-size: 7 * $font-size;
 
 header {
@@ -16,15 +15,9 @@ header {
 body {
   font-size: $font-size;
   line-height: $line-height;
-  margin: $vertical-margin auto;
+  margin: 40px auto;
   max-width: $max-width;
-  padding: 0 $horizontal-padding;
-}
-
-h1,
-h2,
-h3 {
-  line-height: $heading-line-height;
+  padding: $horizontal-padding $vertical-padding;
 }
 
 .cell {
@@ -43,13 +36,13 @@ h3 {
 .success {
   color: $medium-green;
   text-align: center;
-  text-shadow: $pure-black 1px 1px;
+  text-shadow: $black 1px 1px;
 }
 
 .failure {
   color: $firetruck-red;
   text-align: center;
-  text-shadow: $pure-black 1px 1px;
+  text-shadow: $black 1px 1px;
 }
 
 .scoreboard {

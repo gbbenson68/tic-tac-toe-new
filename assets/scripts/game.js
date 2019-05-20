@@ -41,10 +41,20 @@ const updateCell = (cellId) => {
   util.logMessage(whoAmI, 'ID = ' + cellId, '')
 
   if (canCellBeClicked(cellId)) {
+    let isOver = false
     const gameId = store.user.currentGame.game.id
     const val = store.user.cellValues[store.user.currentGameTurns % 2]
-    const isOver = ifGameWon(cellId) // || isGameDraw(cellId)
+
+    // Check to see if we would have a draw on the next update
+    isOver = isGameDraw(cellId)
+    util.logMessage(whoAmI, 'IS GAME A DRAW = ' + isOver, '', '')
+
+    // If the game isn't a draw, check to see if it would be won with the next update.
+    if (!isOver) {
+      isOver = isGameWon(cellId)
+    }
     util.logMessage(whoAmI, 'IS GAME OVER = ' + isOver, '', '')
+
     api.update(gameId, cellId, val, isOver)
       .then(ui.onUpdateCellSuccess)
       .catch(ui.onUpdateCellFailure)
@@ -57,10 +67,16 @@ const updateCell = (cellId) => {
 const canCellBeClicked = (cellId) => {
   util.logMessage(`${pkgName}.canCellBeClicked()`, 'ID = ' + cellId, '')
 
-  // Spit error if no game has been started
   if (store.user.currentGame === undefined) {
+    // Spit error if no game has been started
     ui.displaySuccessFail(`${pkgName}.canCellBeClicked()`, 'Please start a new game or open an old game!', false, '')
     return false
+  } else {
+    // Spit error message if game is over.
+    if (store.user.currentGame.game.over) {
+      ui.displaySuccessFail(`${pkgName}.canCellBeClicked()`, 'Game completed! Please start a new game.', false, '')
+      return false
+    }
   }
 
   // Spit error message if user tries to click an occupied cell.
@@ -69,19 +85,46 @@ const canCellBeClicked = (cellId) => {
     return false
   }
 
-  // Spit error message if game is over.
-  if (store.user.currentGame.game.over) {
-    ui.displaySuccessFail(`${pkgName}.canCellBeClicked()`, 'Game completed! Please start a new game.', false, '')
-    return false
-  }
-
   return true
 }
 
 /*
-** ifGameWon() - check to see if the game has been won with most recent click
+** isGameDraw() - check to see if the game would end in a draw
 */
-const ifGameWon = (cellId) => {
+const isGameDraw = (cellId) => {
+  const whoAmI = `${pkgName}.isGameWon()`
+  const gameCells = store.user.currentGame.game.cells
+  const cellVal = store.user.cellValues[store.user.currentGameUser]
+  const newGameCells = []
+  let retVal = false
+  let cnt = 0
+
+  // Here, we populate the new temporary game cells to check.
+  // If the proceeding update is successful, this will be the new array.
+  gameCells.forEach((elem) => newGameCells.push(elem))
+  util.logMessage(whoAmI, 'Game cells before = ' + newGameCells, '', '')
+  newGameCells[cellId] = cellVal
+  util.logMessage(whoAmI, 'Game cells after = ' + newGameCells, '', '')
+
+  newGameCells.forEach((element) => {
+    if (element === '') {
+      cnt++
+    }
+    console.log('Element = ' + element + ', Count = ' + cnt)
+  })
+
+  if (cnt === 0) {
+    store.user.currentGameisDraw = true
+    retVal = true
+  }
+
+  return retVal
+}
+
+/*
+** isGameWon() - check to see if the game has been won with most recent click
+*/
+const isGameWon = (cellId) => {
   const whoAmI = `${pkgName}.isGameWon()`
   const gameCells = store.user.currentGame.game.cells
   const cellVal = store.user.cellValues[store.user.currentGameUser]

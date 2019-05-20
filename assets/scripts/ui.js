@@ -66,7 +66,7 @@ const onSignInSuccess = responseData => {
 }
 
 const onSignInFailure = responseData => {
-  displaySuccessFail(`${pkgName}.onSignInFailure()`, 'Signed in failed.', false, responseData)
+  displaySuccessFail(`${pkgName}.onSignInFailure()`, 'Signed in failed. Have you signed up yet?', false, responseData)
 }
 
 /*
@@ -100,6 +100,7 @@ const onSignOutSuccess = responseData => {
   $('#show').addClass('hidden')
   $('#change-pw').addClass('hidden')
   $('#sign-out').addClass('hidden')
+  $('form.results').html('')
 
   // Show sign-up/sign-in forms
   $('#sign-up').removeClass('hidden')
@@ -138,7 +139,14 @@ const onUpdateCellSuccess = responseData => {
   $('#' + currCell).text(textVal)
   store.user.currentGameUser = store.user.currentGameTurns % 2
 
-  if (store.user.currentGame.game.over) { onGameWin() }
+  // Perform some actions if the game is a draw or is won.
+  if (store.user.currentGame.game.over) {
+    if (store.user.currentGameisDraw) {
+      onGameDraw()
+    } else {
+      onGameWin()
+    }
+  }
 }
 
 const onUpdateCellFailure = responseData => {
@@ -149,28 +157,31 @@ const onUpdateCellFailure = responseData => {
 ** ***** Index functions *****
 */
 const onIndexSuccess = responseData => {
-  displaySuccessFail(`${pkgName}.onIndexSuccess()`, 'Games retrieved - please see your results below.', true, responseData)
+  displaySuccessFail(`${pkgName}.onIndexSuccess()`, 'Games retrieved - please see your results below the game board.', true, responseData)
 
   // Append list items to unordered list
   const gamesArr = responseData.games
+  const gamesPlayed = gamesArr.length
+  let gamesOpen = 0
   $('form.results').html('')
   let addClass = ''
   for (let i = 0; i < gamesArr.length; i++) {
     const id = gamesArr[i].id
     const isOver = gamesArr[i].over
-    util.logMessage(`${pkgName}.onIndexSuccess()`, `Game: ${id}`, '')
+    util.logMessage(`${pkgName}.onIndexSuccess()`, `Game: ${id}, over: ${isOver}`, '')
     if (isOver) {
-      addClass = ' class=\'game notover\''
-    } else {
       addClass = ' class=\'game\''
+    } else {
+      addClass = ' class=\'game notover\''
+      gamesOpen++
     }
-//    const resultHTML = `<input type='submit'${addClass} value='Game ${id}'/>`
-    const resultHTML = `<button${addClass}>Game ${id}</button>`
+
+    const resultHTML = `<div${addClass}>Game ${id}</div>`
     $('form.results').append(resultHTML)
   }
 
-  // Add listener for game buttons
-//  $('form.results').children('input.game').on('submit', events.onGameButtonClick)
+  $('#games-played').text(`Games Played: ${gamesPlayed}`)
+  $('#games-over').text(`Games Open: ${gamesOpen}`)
 }
 
 const onIndexFailure = responseData => {
@@ -181,7 +192,7 @@ const onIndexFailure = responseData => {
 ** ***** Show functions *****
 */
 const onShowSuccess = responseData => {
-  displaySuccessFail(`${pkgName}.onShowSuccess()`, 'Games retrieved - your board has been repopulated.', true, responseData)
+  displaySuccessFail(`${pkgName}.onShowSuccess()`, 'Game retrieved - your board has been repopulated.', true, responseData)
   store.user.currentGame = responseData
   const thisGame = store.user.currentGame.game
 
@@ -198,11 +209,11 @@ const onShowFailure = responseData => {
 ** ***** Game finished functions *****
 */
 const onGameWin = () => {
-  console.log('YOU HAVE WON THE GAME!!!')
+  displaySuccessFail(`${pkgName}.onGameWin()`, 'CONGRATULATIONS! You won the game!', true, '')
 }
 
 const onGameDraw = () => {
-  console.log('Game is a draw.')
+  displaySuccessFail(`${pkgName}.onGameDraw()`, 'Oh, well, the game is a draw. Please play again!', true, '')
 }
 
 module.exports = {
@@ -222,7 +233,5 @@ module.exports = {
   onIndexSuccess,
   onIndexFailure,
   onShowSuccess,
-  onShowFailure,
-  onGameWin,
-  onGameDraw
+  onShowFailure
 }

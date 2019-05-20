@@ -1,6 +1,5 @@
 $background-color: $sky-blue;
-$font-color: $pure-black;
-$quote-color: $off-white;
+$font-color: $black;
 $cell-size: 10 * $font-size;
 $board-size: 3 * $cell-size;
 
@@ -33,7 +32,7 @@ hr {
 
 .cell {
   background: $paper-white;
-  border: 2px solid $pure-black;
+  border: 2px solid $black;
   height: $cell-size;
   width: $cell-size;
 
@@ -54,10 +53,6 @@ hr {
   padding: .2 * $font-size;
 }
 
-.hidden {
-  display: none;
-}
-
 .message-board {
   background: $light-grey-blue;
   height: 3.8 * $font-size;
@@ -72,5 +67,11 @@ hr {
 
 .scoreboard {
   background: $light-grey-blue;
+  display: flex;
   height: 2.5 * $font-size;
+  justify-content: space-around;
+}
+
+.hidden {
+  display: none;
 }
