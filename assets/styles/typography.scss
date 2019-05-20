@@ -1,28 +1,31 @@
-$font-size: 18px;
-$line-height: 1.6;
-$max-width: 650px;
-$horizontal-padding: 10px;
-$vertical-padding: 5px;
-$cell-font-size: 7 * $font-size;
+$font-size: 2.5vh;
+$line-height: 1.2 * $font-size ;
+$max-width: 70vw;
+$margin: 15vw; // NOTE: 2 * this value = 100 - 70 (above)
+$horizontal-padding: .5 * $font-size;
+$vertical-padding: .3 * $font-size;
+$cell-font-size: 8 * $font-size;
 
 header {
   font-size: 3 * $font-size;
   font-style: italic;
   font-weight: 600;
+  line-height: 4 * $font-size;
   text-align: center;
 }
 
 body {
   font-size: $font-size;
   line-height: $line-height;
-  margin: 40px auto;
+  margin: $margin auto;
   max-width: $max-width;
-  padding: $horizontal-padding $vertical-padding;
+  padding: 0 $horizontal-padding;
 }
 
 .cell {
   font-size: $cell-font-size;
   text-align: center;
+  vertical-align: middle;
 }
 
 .game {

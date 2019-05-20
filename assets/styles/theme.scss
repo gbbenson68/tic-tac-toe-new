@@ -1,6 +1,6 @@
 $background-color: $sky-blue;
 $font-color: $black;
-$cell-size: 10 * $font-size;
+$cell-size: 1.2 * $cell-font-size;
 $board-size: 3 * $cell-size;
 
 header {
@@ -21,6 +21,7 @@ hr {
 .actions {
   display: flex;
   justify-content: space-around;
+  padding-top: $vertical-padding;
 }
 
 .board {
@@ -32,7 +33,7 @@ hr {
 
 .cell {
   background: $paper-white;
-  border: 2px solid $black;
+  border: 1px solid $black;
   height: $cell-size;
   width: $cell-size;
 
@@ -68,8 +69,9 @@ hr {
 .scoreboard {
   background: $light-grey-blue;
   display: flex;
-  height: 2.5 * $font-size;
+  height: 3.8 * $font-size;
   justify-content: space-around;
+  padding-top: $vertical-padding;
 }
 
 .hidden {
