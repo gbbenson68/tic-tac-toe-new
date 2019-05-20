@@ -182,6 +182,12 @@ const onIndexFailure = responseData => {
 */
 const onShowSuccess = responseData => {
   displaySuccessFail(`${pkgName}.onShowSuccess()`, 'Games retrieved - your board has been repopulated.', true, responseData)
+  store.user.currentGame = responseData
+  const thisGame = store.user.currentGame.game
+
+  thisGame.cells.forEach((element, idx) => {
+    $('#cell-id-' + idx).text(element)
+  })
 }
 
 const onShowFailure = responseData => {
