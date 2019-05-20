@@ -15,7 +15,7 @@ The web application was written in and using the following technologies:
 * git/GitHub
 * Atom
 
-_This application was devoped on Ubuntu 18.04.2 LTS. No Microsoft developers were harmed during the making of this application._
+_This application was developed on Ubuntu 18.04.2 LTS. No Microsoft developers were harmed during the making of this application._
 
 Development and Planning
 ------------------------
@@ -23,17 +23,40 @@ When it comes to anything that I do, I'm more of a "pantster" than I am a "plott
 
 I knew immediately that I wanted to have tha ability to hide and show different sections, so, when I wrote the HTML, I wrote it with sections and divs with particular IDs which I could easily reference with the undelying JavaScript that would come later.
 
-I initially, generated the basic HTML with the structure that I thought that I would need. I then linked that HTML to 
+After generating the HTML, I starting writing the linkages to the AJAX API (created by General Assembly) and all of the other JavaScript code to operate the game and manipulate the DOM. As CSS is a weakness of mine, I decided the the fewer the frills, the better. I plan to add more animation and visual effects once I become more knowledgeable and proficient in CSS.
 
 
 Wireframes
 ----------
 These wireframes are quite basic: part of that was intentional (as I knew that my thinking would develop throghout the development stage), and part of that was due to my lack of experience. This is my first web application of its scale, using JavaScript and CSS.
 
+Login Perspective:
+https://i.imgur.com/OgSgebG.jpg
+
+Sign Up Perspective:
+https://i.imgur.com/i96aUn8.jpg
+
+Play Perspective:
+https://i.imgur.com/V9gEpT6.jpg
 
 
 User Stories
 ------------
+
+Here's a collection of user stories.
+
+1. As a player, I want to sign up so that I can play Tic Tac Toe.
+2. As a player, I want to sign out from playing Tic Tac Toe.
+3. As a player who has already signed up, I want to sign in so that I can play Tic Tac Toe.
+4. As a player who has already signed up, I want to change my password.
+5. As a player, I want to start a new game.
+6. As a player, I want to choose from a list of open games to continue playing.
+7. As a player, I want to abandon a game that I no longer wish to play.
+8. As a player, I want to play against another player.
+9. As a player, I want to continue a game against another player.
+
+
+Some of these items were not achievable in the first iteration of the application.
 
 Known Bugs and To-dos
 ---------------------
