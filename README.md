@@ -8,9 +8,10 @@ Technologies Used
 -----------------
 The web application was written in and using the following technologies:
 * HTML
-* CSS
 * JavaScript
 * jQuery
+* CSS
+* SASS/Bootstrap
 * Node.js
 * git/GitHub
 * Atom
@@ -57,6 +58,82 @@ Here's a collection of user stories.
 
 
 Some of these items were not achievable in the first iteration of the application.
+
+Basic Directory Structure
+-------------------------
+
+In addition to the main ```index.html``` file, here's a list of the main directories being used by the application and what they contain:
+
+```
+assets/scripts
+```
+
+This directory contains all of the JavaScript scripts used in the application.
+
+* ```api.js``` - contains the AJAX calls
+
+* ```app.js``` - contains the linkages (event listeners) between the HTML and the game logic
+
+* ```config.js``` - contains configuration variables
+
+* ```events.js``` - contains the event handler logic
+
+* ```game.js``` - the main game functionality
+
+* ```store.js``` - the store for state variables and objects
+
+* ```ui.js``` - contains the user interface functions, used to manipulate the DOM
+
+* ```util.js``` - contains utility functions
+
+```
+assets/styles
+```
+This directory contains the CSS/Bootstrap style selectors.
+
+* ```colors.scss``` - the list of colors used by the application
+
+* ```index.scss``` - the main list of SCSS files used, in the order they are to be utilized
+
+* ```theme.scss``` - contains the themes for the application, not including font details
+
+* ```typography.scss``` - contains the font styles
+
+```
+curl-scripts
+```
+This directory contains the BASH scripts used in testing connectivity and functionality with the API outside of the AJAX calls.
+
+* ```change-password.sh``` - used to test the change password interface (PATCH)
+
+* ```create.sh``` - used to test the create game interface (POST)
+
+* ```index-query.sh``` - used to test the game retrieval interface (GET) with a query
+
+* ```index.sh``` - used to test the game retrieval interface (GET) of all games for a user
+
+* ```show.sh``` - used to retrieve (GET) a single game for the user
+
+* ```sign-in.sh``` - used to test the sign-in (POST) interface
+
+* ```sign-out.s``` - used to test the sign-out (DELETE) interface
+
+* ```sign-up.sh``` - used to test the sign-up (POST) interface
+
+* ```update.sh``` - used to test the game update (PATCH) interface
+
+```
+lib
+```
+This directory contains helper JavaScript scripts which are utilized by the main set of scripts.
+* ```add-nested-value.js``` - contains helper functions which are used by ```get-form-fields.js```.
+
+* ```get-form-fields.js``` - contains functions for parsing HTML form fields, and is used by all other JavaScript scripts.
+
+```
+public/images
+```
+This directory contains the same wireframe images linked above.
 
 Known Bugs and To-dos
 ---------------------
