@@ -26,6 +26,8 @@ I knew immediately that I wanted to have tha ability to hide and show different 
 
 After generating the HTML, I starting writing the linkages to the AJAX API (created by General Assembly) and all of the other JavaScript code to operate the game and manipulate the DOM. As CSS is a weakness of mine, I decided the the fewer the frills, the better. I plan to add more animation and visual effects once I become more knowledgeable and proficient in CSS.
 
+### logMessage()
+One of the things that I wanted to implement was a logging mechanism that worked in a local/development environment only, so that the logging would be visible to the user, but visible for me, as I am like seeing as much information as possible to help me resolve any problems. In my experience, the more *useful* logging an application can generate, the better. There is only one ```console.log()``` contained in the code, and it's wrapped in an ```if``` statement.
 
 Wireframes
 ----------
@@ -57,7 +59,7 @@ Here's a collection of user stories.
 9. As a player, I want to continue a game against another player.
 
 
-Some of these items were not achievable in the first iteration of the application.
+Some of these items were not achievable in the first iteration of the application, and I am planning to implement them later on.
 
 Basic Directory Structure
 -------------------------
@@ -137,8 +139,11 @@ This directory contains the same wireframe images linked above.
 
 Known Bugs and To-dos
 ---------------------
-### Bugs
-At this stage, I'm unaware of any faults in the application. That doesn't mean that there aren't any, however. Please feel free to contact me at ```guy dot b dot benson at gmail dot com``` for issues.
+### Known Bugs
+* Due to the asynchronicity of AJAX requests, it is sometimes possible, if a user reacts quickly, to put a game into an indeterminate state if a click is made before the AJAX request responds with success or fail. I have put in some steps to mitigate this, but it hasn't been thoroughly tested.
+* 
+
+Please feel free to contact me at ```guy dot b dot benson at gmail dot com``` for issues.
 
 ### To-dos
 * At some point, I would like to make this a fully-interactive two-player game which can be played asynchronously. I estimate that it will take another 10-12 hours of dedicated work to achieve that.
