@@ -16,11 +16,7 @@
         Play Tic Tac Toe!
       </header>
       <main>
-        <div class='message-board'>
-          <h3 id="message"></h3>
-        </div>
         <section id='sign-up'>
-          <hr>
           <h3>Are you new here?</h3>
           <form class='form'>
             <input type="email" name="credentials[email]" placeholder="Enter email here" required>
@@ -39,7 +35,7 @@
           </form>
         </section>
         <section id='update' class='hidden'>
-        <hr>
+          <hr>
           <div class="board">
             <div id="cell-id-0" class="cell"></div>
             <div id="cell-id-1" class="cell"></div>
@@ -52,9 +48,12 @@
             <div id="cell-id-8" class="cell"></div>
           </div>
         </section>
+        <div class='message-board'>
+          <div id='message'></div>
+        </div>
         <div id='scoreboard' class='scoreboard hidden'>
-              <div id='games-played' class='score'></div>
-              <div id='games-over' class='score'></div>
+            <div id='games-played' class='score'></div>
+            <div id='games-over' class='score'></div>
         </div>
         <div id='actions' class='actions hidden'>
           <div id='new-game' class='actions'>

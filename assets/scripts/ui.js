@@ -157,7 +157,7 @@ const onUpdateCellFailure = responseData => {
 ** ***** Index functions *****
 */
 const onIndexSuccess = responseData => {
-  displaySuccessFail(`${pkgName}.onIndexSuccess()`, 'Games retrieved - please see your results below the game board.', true, responseData)
+  displaySuccessFail(`${pkgName}.onIndexSuccess()`, 'Games retrieved - please see your results below.', true, responseData)
 
   // Append list items to unordered list
   const gamesArr = responseData.games

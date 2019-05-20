@@ -56,7 +56,8 @@ hr {
 
 .message-board {
   background: $light-grey-blue;
-  height: 3.8 * $font-size;
+  border: 1px solid $navy-blue;
+  height: 3 * $font-size;
 }
 
 .results {
@@ -68,10 +69,10 @@ hr {
 
 .scoreboard {
   background: $light-grey-blue;
+  border: 1px solid $navy-blue;
   display: flex;
   height: 3.8 * $font-size;
   justify-content: space-around;
-  padding-top: $vertical-padding;
 }
 
 .hidden {

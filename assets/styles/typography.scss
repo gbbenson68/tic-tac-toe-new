@@ -37,12 +37,16 @@ body {
 
 .success {
   color: $medium-green;
+  font-size: 2 * $font-size;
+  font-weight: 600;
   text-align: center;
   text-shadow: $black 1px 1px;
 }
 
 .failure {
   color: $firetruck-red;
+  font-size: 2 * $font-size;
+  font-weight: 600;
   text-align: center;
   text-shadow: $black 1px 1px;
 }
@@ -52,6 +56,5 @@ body {
   font-size: 2 * $font-size;
   font-style: italic;
   font-weight: 600;
-  padding-top: .3 * $font-size;
   text-shadow: $black 1px 1px;
 }
