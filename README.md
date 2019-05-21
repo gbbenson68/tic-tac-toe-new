@@ -141,7 +141,7 @@ Known Bugs and To-dos
 ---------------------
 ### Known Bugs
 * Due to the asynchronicity of AJAX requests, it is sometimes possible, if a user reacts quickly, to put a game into an indeterminate state if a click is made before the AJAX request responds with success or fail. I have put in some steps to mitigate this, but it hasn't been thoroughly tested.
-* 
+* The scoreboard does not report correct numbers when **only** open games are retrieved. For whatever reason, a retrieval of only open games updates the games played to be 0, when it should be at least equal to the number of open games retrieved. This requires more time to investigate.
 
 Please feel free to contact me at ```guy dot b dot benson at gmail dot com``` for issues.
 
