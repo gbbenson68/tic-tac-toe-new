@@ -142,7 +142,7 @@ Known Bugs and To-dos
 ### Known Bugs
 * Due to the asynchronicity of AJAX requests, it is sometimes possible, if a user reacts quickly, to put a game into an indeterminate state if a click is made before the AJAX request responds with success or fail. I have put in some steps to mitigate this, but it hasn't been thoroughly tested.
 * The scoreboard does not report correct numbers when **only** open games are retrieved. For whatever reason, a retrieval of only open games updates the games played to be 0, when it should be at least equal to the number of open games retrieved. This requires more time to investigate.
-* WHen resizing the view, the message and scoreboard text does not decrease accordingly. This needs to be investigated.
+* When resizing the view, the message and scoreboard text does not decrease accordingly. This needs to be investigated.
 
 Please feel free to contact me at ```guy dot b dot benson at gmail dot com``` for issues.
 
@@ -151,6 +151,7 @@ Please feel free to contact me at ```guy dot b dot benson at gmail dot com``` fo
 * I'd like to put the game board inside a slightly larger ```<div>``` which displays "finished" vs "open" by a different color of the larger ```<div>``` background.
 * I would like to get rid of the explicit "game search" form and enable the retrieval of a game via buttons, but there is some event bubbling happening which I have not resolved.
 * The determination of the player who should be playing would be easier if there were information in the ```game``` object about whose turn it is. As it is, if we assume that **X** always goes first, if the number of **X** values minus the number of **O** values isn't equal 0, it's **O**'s turn, otherwise it's **X**'s turn.
+* Determination and display of how many games were won by a user is rather moot, if there is only one player playing both **X** and **O**. In the event of a two-player game, this will be important.
 * At some point, I would like to make this a fully-interactive two-player game which can be played asynchronously. I estimate that it will take another 10-12 hours of dedicated work to achieve that.
 * The code could be cleaned up a little bit. I would like to paramaterize the HTML so that there are no hard-coded values in the underlying JavaScript.
 * The CSS used in the rendering can be greatly improved. Unfortunately, as this is a weakness of mine, I would need to gain some knonwledge and experience before providing a *shit hot* experience. Ideally, I would be using more of Bootstrap for this.
