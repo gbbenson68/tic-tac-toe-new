@@ -15,6 +15,7 @@ The web application was written in and using the following technologies:
 * Node.js
 * git/GitHub
 * Atom
+* All colors were derived with the help of https://www.quackit.com/css/css_color_codes.cfm.
 
 _This application was developed on Ubuntu 18.04.2 LTS. No Microsoft developers were harmed during the making of this application._
 
