@@ -4,7 +4,6 @@ const pkgName = 'ui' // eslint-disable-line no-unused-vars
 const config = require('./config')
 const store = require('./store')
 const util = require('./util')
-const events = require('./events')
 
 /*
 ** displaySuccessFail() - calls logMessage and updates the HTML (based on id)
@@ -101,6 +100,8 @@ const onSignOutSuccess = responseData => {
   $('#change-pw').addClass('hidden')
   $('#sign-out').addClass('hidden')
   $('form.results').html('')
+  $('#games-played').text('')
+  $('#games-over').text('')
 
   // Show sign-up/sign-in forms
   $('#sign-up').removeClass('hidden')
@@ -119,6 +120,7 @@ const onNewGameSuccess = responseData => {
   store.user.currentGame = responseData
   store.user.currentGameTurns = 0
   store.user.currentGameUser = 0
+  store.user.isClickable = true
 }
 
 const onNewGameFailure = responseData => {
@@ -133,6 +135,9 @@ const onUpdateCellSuccess = responseData => {
   const currCell = store.user.currentGameActiveCell
   store.user.currentGame = responseData
   store.user.currentGameTurns += 1
+
+  // Allow clicks on cells now.
+  store.user.isClickable = true
 
   // NOTE: Update the cell div BEFORE we update the current game user!!
   const textVal = store.user.cellValues[store.user.currentGameUser]
@@ -151,6 +156,9 @@ const onUpdateCellSuccess = responseData => {
 
 const onUpdateCellFailure = responseData => {
   displaySuccessFail(`${pkgName}.onUpdateCellFailure()`, 'Weird... Cell couldn\'t be updated. Try again.', false, '')
+
+  // Allow clicks on cells now.
+  store.user.isClickable = true
 }
 
 /*
@@ -194,7 +202,29 @@ const onIndexFailure = responseData => {
 const onShowSuccess = responseData => {
   displaySuccessFail(`${pkgName}.onShowSuccess()`, 'Game retrieved - your board has been repopulated.', true, responseData)
   store.user.currentGame = responseData
+  store.user.isClickable = true
+
+  // This is a bit of a kluge, but I couldn't think of any other way.
   const thisGame = store.user.currentGame.game
+  let oCnt = 0
+  let xCnt = 0
+
+  thisGame.cells.forEach((element) => {
+    if (element === 'O') {
+      oCnt++
+    } else if (element === 'X') {
+      xCnt++
+    }
+  })
+
+  // Set some state variables (this is also kind of a kluge)
+  if (xCnt - oCnt === 0) {
+    store.user.currentGameTurns = 0
+    store.user.currentGameUser = 0
+  } else {
+    store.user.currentGameTurns = 1
+    store.user.currentGameUser = 1
+  }
 
   thisGame.cells.forEach((element, idx) => {
     $('#cell-id-' + idx).text(element)

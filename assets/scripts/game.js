@@ -55,6 +55,7 @@ const updateCell = (cellId) => {
     }
     util.logMessage(whoAmI, 'IS GAME OVER = ' + isOver, '', '')
 
+    store.user.isClickable = false
     api.update(gameId, cellId, val, isOver)
       .then(ui.onUpdateCellSuccess)
       .catch(ui.onUpdateCellFailure)
@@ -66,6 +67,12 @@ const updateCell = (cellId) => {
 */
 const canCellBeClicked = (cellId) => {
   util.logMessage(`${pkgName}.canCellBeClicked()`, 'ID = ' + cellId, '')
+
+  // Spit an error if user clicking way too fast for AJAX call.
+  if (store.user.isClickable !== undefined && !store.user.isClickable) {
+    ui.displaySuccessFail(`${pkgName}.canCellBeClicked()`, 'Please wait...', false, '')
+    return false
+  }
 
   if (store.user.currentGame === undefined) {
     // Spit error if no game has been started
@@ -110,7 +117,7 @@ const isGameDraw = (cellId) => {
     if (element === '') {
       cnt++
     }
-    console.log('Element = ' + element + ', Count = ' + cnt)
+    util.logMessage(whoAmI, 'Element = ' + element + ', Count = ' + cnt, '', '')
   })
 
   if (cnt === 0) {
