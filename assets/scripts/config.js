@@ -4,7 +4,7 @@
 //       must be updated!!
 const successFailMessageId = '#message'
 const formId = '.form'
-const messageDelay = 8000
+const messageDelay = 20000
 
 let apiUrl
 const apiUrls = {

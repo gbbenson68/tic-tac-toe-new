@@ -121,6 +121,7 @@ const onNewGameSuccess = responseData => {
   store.user.currentGameTurns = 0
   store.user.currentGameUser = 0
   store.user.isClickable = true
+  store.user.currentGameisDraw = false
 }
 
 const onNewGameFailure = responseData => {
@@ -206,6 +207,7 @@ const onShowSuccess = responseData => {
 
   // This is a bit of a kluge, but I couldn't think of any other way.
   const thisGame = store.user.currentGame.game
+  store.user.currentGameisDraw = false
   let oCnt = 0
   let xCnt = 0
 
@@ -229,6 +231,8 @@ const onShowSuccess = responseData => {
   thisGame.cells.forEach((element, idx) => {
     $('#cell-id-' + idx).text(element)
   })
+
+  util.logMessage(`${pkgName}.onShowSuccess()`, 'currentGameisDraw = ', store.user.currentGameisDraw)
 }
 
 const onShowFailure = responseData => {

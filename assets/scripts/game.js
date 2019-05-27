@@ -46,13 +46,8 @@ const updateCell = (cellId) => {
     const val = store.user.cellValues[store.user.currentGameTurns % 2]
 
     // Check to see if we would have a draw on the next update
-    isOver = isGameDraw(cellId)
-    util.logMessage(whoAmI, 'IS GAME A DRAW = ' + isOver, '', '')
-
-    // If the game isn't a draw, check to see if it would be won with the next update.
-    if (!isOver) {
-      isOver = isGameWon(cellId)
-    }
+    isOver = isGameOver(cellId)
+    util.logMessage(whoAmI, 'IS GAME A DRAW = ' + store.user.currentGameisDraw, '', '')
     util.logMessage(whoAmI, 'IS GAME OVER = ' + isOver, '', '')
 
     store.user.isClickable = false
@@ -96,43 +91,10 @@ const canCellBeClicked = (cellId) => {
 }
 
 /*
-** isGameDraw() - check to see if the game would end in a draw
+** isGameOver() - check to see if the game has been won with most recent click
 */
-const isGameDraw = (cellId) => {
-  const whoAmI = `${pkgName}.isGameWon()`
-  const gameCells = store.user.currentGame.game.cells
-  const cellVal = store.user.cellValues[store.user.currentGameUser]
-  const newGameCells = []
-  let retVal = false
-  let cnt = 0
-
-  // Here, we populate the new temporary game cells to check.
-  // If the proceeding update is successful, this will be the new array.
-  gameCells.forEach((elem) => newGameCells.push(elem))
-  util.logMessage(whoAmI, 'Game cells before = ' + newGameCells, '', '')
-  newGameCells[cellId] = cellVal
-  util.logMessage(whoAmI, 'Game cells after = ' + newGameCells, '', '')
-
-  newGameCells.forEach((element) => {
-    if (element === '') {
-      cnt++
-    }
-    util.logMessage(whoAmI, 'Element = ' + element + ', Count = ' + cnt, '', '')
-  })
-
-  if (cnt === 0) {
-    store.user.currentGameisDraw = true
-    retVal = true
-  }
-
-  return retVal
-}
-
-/*
-** isGameWon() - check to see if the game has been won with most recent click
-*/
-const isGameWon = (cellId) => {
-  const whoAmI = `${pkgName}.isGameWon()`
+const isGameOver = (cellId) => {
+  const whoAmI = `${pkgName}.isGameOver()`
   const gameCells = store.user.currentGame.game.cells
   const cellVal = store.user.cellValues[store.user.currentGameUser]
   const newGameCells = []
@@ -217,6 +179,20 @@ const isGameWon = (cellId) => {
   if (colArr.every(checkVal)) { return true }
   if (useDiag1 && diagArr1.every(checkVal)) { return true }
   if (useDiag2 && diagArr2.every(checkVal)) { return true }
+
+  // If we've gotten here, nobody has won - check for a draw.
+  let cnt = 0
+  newGameCells.forEach((element) => {
+    if (element === '') {
+      cnt++
+    }
+    // util.logMessage(whoAmI, 'Element = ' + element + ', Count = ' + cnt, '', '')
+  })
+
+  if (cnt === 0) {
+    store.user.currentGameisDraw = true
+    return true
+  }
 
   // If we've done eveything right, we should never get here.
   // If we haven't return false
