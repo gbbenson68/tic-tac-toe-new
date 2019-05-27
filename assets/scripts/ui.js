@@ -24,8 +24,7 @@ const displaySuccessFail = (method, message, isSuccessful, object) => {
   $(config.successFailMessageId).removeClass()
   $(config.successFailMessageId).text(message)
   $(config.successFailMessageId).addClass(displayClass)
-  $(config.formId).trigger('reset')
-  setTimeout(() => $(config.successFailMessageId).text(''), config.messageDelay)
+  // setTimeout(() => $(config.successFailMessageId).text(''), config.messageDelay)
 }
 
 /*
@@ -35,12 +34,14 @@ const onSignUpSuccess = responseData => {
   displaySuccessFail(`${pkgName}.onSignUpSuccess()`, 'Signed up successfully! Please sign in to play.', true, responseData)
 
   // Hide sign-in forms
+  $(config.formId).trigger('reset')
   $('#sign-up').addClass('hidden')
   $('#sign-in').children('h3').text('Please sign in to play!')
 }
 
 const onSignUpFailure = responseData => {
   displaySuccessFail(`${pkgName}.onSignUpFailure()`, 'Signed up failed.', false, responseData)
+  $(config.formId).trigger('reset')
 }
 
 /*
@@ -52,6 +53,7 @@ const onSignInSuccess = responseData => {
   store.user.cellValues = ['X', 'O'] // TODO: Replace this array with images that can be used
 
   // Hide sign-up/sign-in forms
+  $(config.formId).trigger('reset')
   $('#sign-up').addClass('hidden')
   $('#sign-in').addClass('hidden')
 
@@ -66,6 +68,7 @@ const onSignInSuccess = responseData => {
 
 const onSignInFailure = responseData => {
   displaySuccessFail(`${pkgName}.onSignInFailure()`, 'Signed in failed. Have you signed up yet?', false, responseData)
+  $(config.formId).trigger('reset')
 }
 
 /*
@@ -73,10 +76,12 @@ const onSignInFailure = responseData => {
 */
 const onChangePasswordSuccess = responseData => {
   displaySuccessFail(`${pkgName}.onChangePasswordSuccess()`, 'Password changed successfully!', true, responseData)
+  $(config.formId).trigger('reset')
 }
 
 const onChangePasswordFailure = responseData => {
   displaySuccessFail(`${pkgName}.onChangePasswordFailure()`, 'Change password failed.', false, responseData)
+  $(config.formId).trigger('reset')
 }
 
 /*
@@ -93,6 +98,7 @@ const onSignOutSuccess = responseData => {
   displaySuccessFail(`${pkgName}.onSignOutSuccess()`, 'Goodbye!', true, responseData)
 
   // Hide board and other elements
+  $(config.formId).trigger('reset')
   $('#update').addClass('hidden')
   $('#scoreboard').addClass('hidden')
   $('#actions').addClass('hidden')
@@ -110,6 +116,7 @@ const onSignOutSuccess = responseData => {
 
 const onSignOutFailure = responseData => {
   displaySuccessFail(`${pkgName}.onSignOutFailure()`, 'Sign out failed.', false, responseData)
+  $(config.formId).trigger('reset')
 }
 
 /*
@@ -202,6 +209,7 @@ const onIndexFailure = responseData => {
 */
 const onShowSuccess = responseData => {
   displaySuccessFail(`${pkgName}.onShowSuccess()`, 'Game retrieved - your board has been repopulated.', true, responseData)
+  $(config.formId).trigger('reset')
   store.user.currentGame = responseData
   store.user.isClickable = true
 
@@ -237,6 +245,7 @@ const onShowSuccess = responseData => {
 
 const onShowFailure = responseData => {
   displaySuccessFail(`${pkgName}.onShowFailure()`, 'Oops! Game could not be retrieved. Please try again.', false, '')
+  $(config.formId).trigger('reset')
 }
 
 /*
