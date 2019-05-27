@@ -115,21 +115,29 @@ const onIndexAll = () => {
 ** onIndexOpen() - this just wraps onIndex() but passes an argument
 */
 const onIndexOpen = () => {
-  event.preventDefault()
   onIndex(false)
 }
 
 /*
 ** onIndex()
 */
-const onIndex = (queryVal) => {
+const onIndex = (isOver) => {
   const whoAmI = `${pkgName}.onIndex()`
+  event.preventDefault()
   util.logMessage(whoAmI, '', '')
+
+  if (isOver === undefined) {
+    store.user.gameIndexFlag = 0 // Display all games
+  } else if (isOver) {
+    store.user.gameIndexFlag = 2 // Display finished games
+  } else {
+    store.user.gameIndexFlag = 1 // Display open games
+  }
 
   if (store.user === undefined) {
     ui.displaySuccessFail(whoAmI, 'Oops! You must be signed in to get a list of your games.', false, '')
   } else {
-    api.index(queryVal)
+    api.index()
       .then(ui.onIndexSuccess)
       .catch(ui.onIndexFailure)
   }

@@ -42,6 +42,7 @@ const onSignUpSuccess = responseData => {
 const onSignUpFailure = responseData => {
   displaySuccessFail(`${pkgName}.onSignUpFailure()`, 'Signed up failed.', false, responseData)
   $(config.formId).trigger('reset')
+  setTimeout(() => $(config.successFailMessageId).text(''), config.messageDelay)
 }
 
 /*
@@ -69,6 +70,7 @@ const onSignInSuccess = responseData => {
 const onSignInFailure = responseData => {
   displaySuccessFail(`${pkgName}.onSignInFailure()`, 'Signed in failed. Have you signed up yet?', false, responseData)
   $(config.formId).trigger('reset')
+  setTimeout(() => $(config.successFailMessageId).text(''), config.messageDelay)
 }
 
 /*
@@ -112,6 +114,7 @@ const onSignOutSuccess = responseData => {
   // Show sign-up/sign-in forms
   $('#sign-up').removeClass('hidden')
   $('#sign-in').removeClass('hidden')
+  setTimeout(() => $(config.successFailMessageId).text(''), config.messageDelay)
 }
 
 const onSignOutFailure = responseData => {
@@ -192,8 +195,10 @@ const onIndexSuccess = responseData => {
       gamesOpen++
     }
 
-    const resultHTML = `<div${addClass}>Game ${id}</div>`
-    $('form.results').append(resultHTML)
+    if (!isOver || (isOver && store.user.gameIndexFlag !== 1)) {
+      const resultHTML = `<div${addClass}>Game ${id}</div>`
+      $('form.results').append(resultHTML)
+    }
   }
 
   $('#games-played').text(`Games Played: ${gamesPlayed}`)
@@ -252,7 +257,11 @@ const onShowFailure = responseData => {
 ** ***** Game finished functions *****
 */
 const onGameWin = () => {
-  displaySuccessFail(`${pkgName}.onGameWin()`, 'CONGRATULATIONS! You won the game!', true, '')
+  // This is another kluge - luckily this works because we'll only have two players.
+  const gameTurns = store.user.currentGameTurns + 1
+  const gameUser = gameTurns % 2
+  const textVal = store.user.cellValues[gameUser]
+  displaySuccessFail(`${pkgName}.onGameWin()`, `HOORAY! ${textVal} has won the game!`, true, '')
 }
 
 const onGameDraw = () => {
