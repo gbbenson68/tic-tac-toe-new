@@ -58,6 +58,7 @@ hr {
   background: $light-grey-blue;
   border: 1px solid $navy-blue;
   height: 3 * $font-size;
+  max-width: $max-width;
 }
 
 .results {
@@ -73,6 +74,7 @@ hr {
   display: flex;
   height: 3.8 * $font-size;
   justify-content: space-around;
+  max-width: $max-width;
 }
 
 .hidden {
