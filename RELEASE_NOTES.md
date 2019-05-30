@@ -1,6 +1,9 @@
 RELEASE NOTES
 -------------
 
+##### 2019-05-30
+- Removed "Game Over" and "Game Not Over" indicators, as they seemed to confuse more than help.
+
 ##### 2019-05-29
 - Changed message so that, upon loading of game, user knows whose turn it is, and if game is over.
 - HTML and CSS stuff
