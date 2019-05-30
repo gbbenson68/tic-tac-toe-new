@@ -16,22 +16,22 @@
         Play Tic Tac Toe!
       </header>
       <main>
+        <section id='sign-in'>
+          <h3>Coming back again?</h3>
+          <form class='form'>
+            <input type="email" name="credentials[email]" placeholder="Enter email here" required>
+            <input type="password" name="credentials[password]" placeholder="Enter password here" required>
+            <input type="submit" value="Sign In"/>
+          </form>
+        </section>
         <section id='sign-up'>
+        <hr>
           <h3>Are you new here?</h3>
           <form class='form'>
             <input type="email" name="credentials[email]" placeholder="Enter email here" required>
             <input type="password" name="credentials[password]" placeholder="Enter password here" required>
             <input type="password" name="credentials[password_confirmation]" placeholder="Re-enter password here" required>
             <input type="submit" value="Sign Up"/>
-          </form>
-        </section>
-        <section id='sign-in'>
-        <hr>
-          <h3>Coming back again?</h3>
-          <form class='form'>
-            <input type="email" name="credentials[email]" placeholder="Enter email here" required>
-            <input type="password" name="credentials[password]" placeholder="Enter password here" required>
-            <input type="submit" value="Sign In"/>
           </form>
         </section>
         <section id='update' class='hidden'>
