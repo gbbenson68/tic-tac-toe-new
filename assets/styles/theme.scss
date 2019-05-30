@@ -16,6 +16,12 @@ body {
 hr {
   clear: both;
   visibility: hidden;
+
+  &.norm {
+    border: 1px solid $black;
+    clear: none;
+    visibility: visible;
+  }
 }
 
 .actions {
@@ -28,6 +34,7 @@ hr {
   display: flex;
   flex-wrap: wrap;
   height: $board-size;
+  justify-content: center;
   width: $board-size;
 }
 
@@ -61,10 +68,22 @@ hr {
   max-width: $max-width;
 }
 
+.others {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
 .results {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.results-info {
+  align-items: center;
+  display: flex;
   justify-content: space-around;
 }
 

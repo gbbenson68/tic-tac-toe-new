@@ -72,30 +72,36 @@
             </form>
           </div>
         </div>
+        <hr class='norm hidden'>
         <section id='show' class='hidden'>
-        <hr>
           <form class='form centered'>
             <input type="number" name="game[id]" placeholder="ID" required>
-            <input type="submit" value="Get A Game"/>
+            <input type="submit" value="Enter A Game ID From Below"/>
           </form>
         </section>
-        <section id='change-pw' class='hidden'>
+
         <hr>
-          <h3>Change Password</h3>
-          <form class='form'>
-            <input type="password" name="passwords[old]" placeholder="Enter old password here" required>
-            <input type="password" name="passwords[new]" placeholder="Enter new password here" required>
-            <input type="submit" value="Change Password"/>
-          </form>
-        </section>
-        <section id='sign-out' class='hidden'>
-        <hr>
-          <form class='form centered'>
-            <input type="submit" value="Sign Out"/>
-          </form>
+        <section class='results-info hidden'>
+          <div class='game'>Game Over</div>
+          <div class='game notover'>Game Not Over</div>
         </section>
         <hr>
         <form class='results'></form>
+        <hr class='norm hidden'>
+        <div class='others'>
+          <section id='change-pw' class='hidden'>
+            <form class='form'>
+              <input type="password" name="passwords[old]" placeholder="Enter old password here" required>
+              <input type="password" name="passwords[new]" placeholder="Enter new password here" required>
+              <input type="submit" value="Change Password"/>
+            </form>
+          </section>
+          <section id='sign-out' class='hidden'>
+            <form class='form centered'>
+              <input type="submit" value="Sign Out"/>
+            </form>
+          </section>
+        </div>
       </main>
 
       <hr>

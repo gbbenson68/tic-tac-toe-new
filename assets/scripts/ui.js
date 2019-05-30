@@ -65,6 +65,8 @@ const onSignInSuccess = responseData => {
   $('#show').removeClass('hidden')
   $('#change-pw').removeClass('hidden')
   $('#sign-out').removeClass('hidden')
+  $('.results-info').removeClass('hidden')
+  $('.norm').removeClass('hidden')
 }
 
 const onSignInFailure = responseData => {
@@ -107,6 +109,8 @@ const onSignOutSuccess = responseData => {
   $('#show').addClass('hidden')
   $('#change-pw').addClass('hidden')
   $('#sign-out').addClass('hidden')
+  $('.results-info').addClass('hidden')
+  $('.norm').addClass('hidden')
   $('form.results').html('')
   $('#games-played').text('')
   $('#games-over').text('')
@@ -213,7 +217,6 @@ const onIndexFailure = responseData => {
 ** ***** Show functions *****
 */
 const onShowSuccess = responseData => {
-  displaySuccessFail(`${pkgName}.onShowSuccess()`, 'Game retrieved - your board has been repopulated.', true, responseData)
   $(config.formId).trigger('reset')
   store.user.currentGame = responseData
   store.user.isClickable = true
@@ -239,6 +242,12 @@ const onShowSuccess = responseData => {
   } else {
     store.user.currentGameTurns = 1
     store.user.currentGameUser = 1
+  }
+  const textVal = store.user.cellValues[store.user.currentGameUser]
+  if (store.user.currentGame.game.over) {
+    displaySuccessFail(`${pkgName}.onShowSuccess()`, 'Game over, please start a new game.', false, responseData)
+  } else {
+    displaySuccessFail(`${pkgName}.onShowSuccess()`, `Game repopulated - it's ${textVal}'s turn!`, true, responseData)
   }
 
   thisGame.cells.forEach((element, idx) => {

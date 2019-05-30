@@ -6,19 +6,20 @@ $horizontal-padding: .5 * $font-size;
 $vertical-padding: .3 * $font-size;
 $cell-font-size: 8 * $font-size;
 
+body {
+  font-size: $font-size;
+  margin: .1 * $margin $margin;
+  max-width: $max-width;
+  padding: 0 $horizontal-padding;
+}
+
 header {
   font-size: 3 * $font-size;
   font-style: italic;
   font-weight: 600;
   line-height: 4 * $font-size;
+  margin-bottom: .1 * $margin;
   text-align: center;
-}
-
-body {
-  font-size: $font-size;
-  margin: $margin auto;
-  max-width: $max-width;
-  padding: 0 $horizontal-padding;
 }
 
 .cell {
