@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Play Tic Tac Toe!</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+      <header>
+        Play Tic Tac Toe!
+      </header>
+      <main>
+        <section id='sign-in'>
+          <h3>Coming back again?</h3>
+          <form class='form'>
+            <input type="email" name="credentials[email]" placeholder="Enter email here" required>
+            <input type="password" name="credentials[password]" placeholder="Enter password here" required>
+            <input type="submit" value="Sign In"/>
+          </form>
+        </section>
+        <section id='sign-up'>
+        <hr>
+          <h3>Are you new here?</h3>
+          <form class='form'>
+            <input type="email" name="credentials[email]" placeholder="Enter email here" required>
+            <input type="password" name="credentials[password]" placeholder="Enter password here" required>
+            <input type="password" name="credentials[password_confirmation]" placeholder="Re-enter password here" required>
+            <input type="submit" value="Sign Up"/>
+          </form>
+        </section>
+        <section id='update' class='hidden'>
+          <hr>
+          <div class="board">
+            <div id="cell-id-0" class="cell"></div>
+            <div id="cell-id-1" class="cell"></div>
+            <div id="cell-id-2" class="cell"></div>
+            <div id="cell-id-3" class="cell"></div>
+            <div id="cell-id-4" class="cell"></div>
+            <div id="cell-id-5" class="cell"></div>
+            <div id="cell-id-6" class="cell"></div>
+            <div id="cell-id-7" class="cell"></div>
+            <div id="cell-id-8" class="cell"></div>
+          </div>
+        </section>
+        <div class='message-board'>
+          <div id='message'></div>
+        </div>
+        <div id='scoreboard' class='scoreboard hidden'>
+            <div id='games-played' class='score'></div>
+            <div id='games-over' class='score'></div>
+        </div>
+        <div id='actions' class='actions hidden'>
+          <div id='new-game' class='actions'>
+            <form class='form'>
+              <input type="submit" value="Start New Game"/>
+            </form>
+          </div>
+          <div id='index' class='actions'>
+            <form class="form">
+              <input type="submit" value="Get All Games"/>
+            </form>
+          </div>
+          <div id='index-open' class='actions'>
+            <form class="form">
+              <input type="submit" value="Get All Open Games"/>
+            </form>
+          </div>
+        </div>
+        <hr class='norm hidden'>
+        <section id='show' class='hidden'>
+          <form class='form centered'>
+            <input type="number" name="game[id]" placeholder="ID" required>
+            <input type="submit" value="Enter A Game ID From Below"/>
+          </form>
+        </section>
+
+        <hr>
+        <!--
+        <section class='results-info hidden'>
+          <div class='game'>Game Over</div>
+          <div class='game notover'>Game Not Over</div>
+        </section>
+        -->
+        <hr>
+        <form class='results'></form>
+        <hr class='norm hidden'>
+        <div class='others'>
+          <section id='change-pw' class='hidden'>
+            <form class='form'>
+              <input type="submit" value="Change Password"/>
+              <input type="password" name="passwords[old]" placeholder="Enter old password here" required>
+              <input type="password" name="passwords[new]" placeholder="Enter new password here" required>
+            </form>
+          </section>
+          <section id='sign-out' class='hidden'>
+            <form class='form centered'>
+              <input type="submit" value="Sign Out"/>
+            </form>
+          </section>
+        </div>
+      </main>
+
+      <hr>
+      <footer>
+        © 2019 Guy B. Benson
+      </footer>
+    </body>
+</html>
